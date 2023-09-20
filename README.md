@@ -1,16 +1,18 @@
-# dog_friends
+# Dog friends
 
 A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## Aim:
+Help people find a dog walking company.
 
-A few resources to get you started if this is your first Flutter project:
+### This app is especially suitable for people:
+1. Who recently got a dog and is looking for friends for walks;
+2. Who moved to another city and does not know anyone;
+3. Who has certain characteristics in a dog that cannot walk with any dog;
+4. Who are looking for dogs for mating of certain breeds;
+5. Socialization of dogs and people.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
