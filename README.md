@@ -5,7 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 ## Aim:
-Help people find a dog walking company.
+Help people find a dog walking friends.
 
 ### This app is especially suitable for people:
 1. Who recently got a dog and is looking for friends for walks;
