@@ -13,3 +13,6 @@ Help people find a dog walking friends.
 3. Who has certain characteristics in a dog that cannot walk with any dog;
 4. Who are looking for dogs for mating of certain breeds;
 5. Socialization of dogs and people.
+
+
+![Schema of app dog friends](Schema of app--2023-09-20-1940.png)
