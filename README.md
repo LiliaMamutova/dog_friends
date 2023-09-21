@@ -15,4 +15,4 @@ Help people find a dog walking friends.
 5. Socialization of dogs and people.
 
 
-![Schema of app dog friends](Schema of app--2023-09-20-1940.png)
+![Schema of app dog friends](https://github.com/LiliaMamutova/dog_friends/blob/create-readme/schema.png)
