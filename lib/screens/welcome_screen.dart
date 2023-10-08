@@ -1,12 +1,12 @@
-import 'package:dog_friends/sign_up_sign_in_screen.dart';
+import 'package:dog_friends/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 
-class StartScreen extends StatelessWidget {
-  const StartScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   void goTo(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => SignUpAndSignInScreen()));
+        .push(MaterialPageRoute(builder: (context) => const AuthScreen()));
   }
 
   @override

@@ -1,35 +1,21 @@
-import 'package:dog_friends/log_in_by_screen.dart';
-import 'package:dog_friends/sign_up_data_screen.dart';
+import 'package:dog_friends/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignUpAndSignInScreen extends StatelessWidget {
-  final List<ListOfIconsAndTexts> goalOfApp = [
-    ListOfIconsAndTexts(const Icon(Icons.pets),
-        " recently got a dog and are looking for friends for walks;\n"),
-    ListOfIconsAndTexts(const Icon(Icons.pets),
-        " have moved to another city and do not know anyone; \n"),
-    ListOfIconsAndTexts(const Icon(Icons.pets),
-        " have certain characteristics in their dog that cannot walk with any dog; \n"),
-    ListOfIconsAndTexts(const Icon(Icons.pets),
-        " are looking for dogs for mating of certain breeds; \n"),
-    ListOfIconsAndTexts(
-        const Icon(Icons.pets), " seek socialization of dogs and people. \n"),
-  ];
+import '../helpers.dart';
 
-  SignUpAndSignInScreen({Key? key}) : super(key: key);
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({Key? key}) : super(key: key);
 
   void goToSignUp(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SignUpDataScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
   }
 
   void goToSignIn(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LogInByScreen()));
+    //todo: implement navigation to signInScreen
   }
 
-  @override
-  Widget build(BuildContext context) {
+  List<InlineSpan> _createTextIconsListWidgets() {
     final List<InlineSpan> textIconsListWidgets = [];
 
     for (int i = 0; i < goalOfApp.length; i++) {
@@ -45,6 +31,14 @@ class SignUpAndSignInScreen extends StatelessWidget {
       ];
       textIconsListWidgets.addAll(itemWidgets);
     }
+
+    return textIconsListWidgets;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textIconsListWidgets = _createTextIconsListWidgets();
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,7 +76,7 @@ class SignUpAndSignInScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                width: (MediaQuery.of(context).size.width / 3),
+                width: MediaQuery.of(context).size.width / 3,
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () => goToSignIn(context),
@@ -96,7 +90,7 @@ class SignUpAndSignInScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: (MediaQuery.of(context).size.width / 3),
+                width: MediaQuery.of(context).size.width / 3,
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () => goToSignUp(context),
@@ -115,11 +109,4 @@ class SignUpAndSignInScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class ListOfIconsAndTexts {
-  final Icon icon;
-  final String text;
-
-  ListOfIconsAndTexts(this.icon, this.text);
 }

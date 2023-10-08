@@ -1,27 +1,19 @@
-import 'package:dog_friends/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../user.model.dart';
 
 final emailValidator = RegExp(
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
-class User {
-  late String userName;
-  late String phoneNumber;
-  late String email;
-  late String password;
-
-  User();
-}
-
-class SignUpDataScreen extends StatefulWidget {
-  const SignUpDataScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignUpDataScreen> createState() => _SignUpDataScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpDataScreenState extends State<SignUpDataScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   static const errorMessageRequired = "This field is required";
   final _formKey = GlobalKey<FormState>();
 
@@ -36,8 +28,7 @@ class _SignUpDataScreenState extends State<SignUpDataScreen> {
   }
 
   void goToUserProfile(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const UserProfileScreen()));
+    //todo: implement navigation to user profile;
   }
 
   void _submitForm() {
