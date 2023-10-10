@@ -17,4 +17,4 @@ To help people find friends for walking a dog.
 5. seek socialization of dogs and people.
 
 ![Schema of app dog friends](https://github.com/LiliaMamutova/dog_friends/blob/create-readme/schema.png)
-![Implemented_logic_app_dog_friends]()
+![Implemented_logic_app_dog_friends](https://github.com/LiliaMamutova/dog_friends/blob/new_readme/Implemented_logic_app_dog_friends.gif)
