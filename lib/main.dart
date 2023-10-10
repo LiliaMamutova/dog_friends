@@ -1,7 +1,6 @@
+import 'package:dog_friends/screens/welcome_screen.dart';
 import 'package:dog_friends/theme_of_colors.dart';
 import 'package:flutter/material.dart';
-
-import 'log_in_by_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dog Friends',
       theme: theme,
-      home: const LogInByScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }
