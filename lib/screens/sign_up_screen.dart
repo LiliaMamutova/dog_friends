@@ -56,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _user.password = value!;
   }
 
-  String? _isNullOrEmpty(String? value, {Function(String? value)? callBack}) {
+  String? _validate(String? value, {Function(String? value)? callBack}) {
     if (value == null || value.isEmpty) {
       return errorMessageRequired;
     }
@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 80),
                       TextFormField(
                         onSaved: _saveUserName,
-                        validator: _isNullOrEmpty,
+                        validator: _validate,
                         keyboardType: TextInputType.name,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -115,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20),
                       TextFormField(
                         onSaved: _saveUserPhoneNumber,
-                        validator: _isNullOrEmpty,
+                        validator: _validate,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly,
@@ -130,7 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20),
                       TextFormField(
                         onSaved: _saveUserEmail,
-                        validator: (String? value) => _isNullOrEmpty(
+                        validator: (String? value) => _validate(
                           value,
                           callBack: _checkEmail,
                         ),
@@ -145,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20),
                       TextFormField(
                         onSaved: _saveUserPassword,
-                        validator: (String? value) => _isNullOrEmpty(
+                        validator: (String? value) => _validate(
                           value,
                           callBack: _checkPasswordsLength,
                         ),
