@@ -1,0 +1,68 @@
+import 'dog_info.model.dart';
+
+List<DogInfo> dogsList = [
+  DogInfo(
+    name: "Tokyo",
+    breed: "Metis husky",
+    gender: "Female",
+    birthDate: "21.04.2022",
+    featureOfDog: "Average height. Sterilized",
+    image: "assets/images/tokyo1.jpeg",
+  ),
+  DogInfo(
+    name: "Bublyk",
+    breed: "Metis",
+    gender: "Male",
+    birthDate: "20.05.2022",
+    featureOfDog: "Average height. Emasculate",
+    image: "assets/images/bublyk.jpeg",
+  ),
+  DogInfo(
+    name: "Disney",
+    breed: "Mini dachshund",
+    gender: "Female",
+    birthDate: "30.05.2022",
+    featureOfDog: "Average height. Not sterilized",
+    image: "assets/images/disney.jpeg",
+  ),
+  DogInfo(
+    name: "Javelina",
+    breed: "Black shepherd",
+    gender: "Female",
+    birthDate: "15.02.2022",
+    featureOfDog: "Average height. Not sterilized",
+    image: "assets/images/javelina.jpeg",
+  ),
+  DogInfo(
+    name: "Rocket",
+    breed: "Metis dachshund",
+    gender: "Female",
+    birthDate: "12.01.2021",
+    featureOfDog: "Small height. Sterilized",
+    image: "assets/images/rocket.jpeg",
+  ),
+  DogInfo(
+    name: "Happy",
+    breed: "Metis",
+    gender: "Female",
+    birthDate: "30.05.2022",
+    featureOfDog: "Average height. Not sterilized",
+    image: "assets/images/happy.jpeg",
+  ),
+  DogInfo(
+    name: "Baks",
+    breed: "Am. Bully",
+    gender: "Male",
+    birthDate: "11.05.2023",
+    featureOfDog: "Average height. Not sterilized",
+    image: "assets/images/baks.jpeg",
+  ),
+  DogInfo(
+    name: "Feona",
+    breed: "Husky",
+    gender: "Female",
+    birthDate: "03.09.2023",
+    featureOfDog: "Average height. Not sterilized",
+    image: "assets/images/husky.jpeg",
+  ),
+];
