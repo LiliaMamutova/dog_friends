@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'dog_info.model.dart';
+import 'dog_model.dart';
 import 'text_scaler.dart';
 
-class GridDogs extends StatelessWidget {
-  const GridDogs({
+class DogsGridWidget extends StatelessWidget {
+  const DogsGridWidget({
     super.key,
     required this.dogsList,
     required this.columnsCount,
   });
 
-  final List<DogInfo> dogsList;
+  final List<DogModel> dogsList;
   final int columnsCount;
 
   @override
@@ -22,7 +22,7 @@ class GridDogs extends StatelessWidget {
         mainAxisExtent: 180,
       ),
       itemBuilder: (BuildContext context, int index) {
-        final DogInfo dog = dogsList[index];
+        final DogModel dog = dogsList[index];
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           shape: RoundedRectangleBorder(

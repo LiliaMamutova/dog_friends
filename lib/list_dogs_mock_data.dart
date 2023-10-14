@@ -1,68 +1,68 @@
-import 'dog_info.model.dart';
+import 'dog_model.dart';
 
-List<DogInfo> dogsList = [
-  DogInfo(
+List<DogModel> dogsList = [
+  DogModel(
     name: "Tokyo",
     breed: "Metis husky",
     gender: "Female",
     birthDate: "21.04.2022",
-    featureOfDog: "Average height. Sterilized",
+    dogFeatures: "Average height. Sterilized",
     image: "assets/images/tokyo1.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Bublyk",
     breed: "Metis",
     gender: "Male",
     birthDate: "20.05.2022",
-    featureOfDog: "Average height. Emasculate",
+    dogFeatures: "Average height. Emasculate",
     image: "assets/images/bublyk.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Disney",
     breed: "Mini dachshund",
     gender: "Female",
     birthDate: "30.05.2022",
-    featureOfDog: "Average height. Not sterilized",
+    dogFeatures: "Average height. Not sterilized",
     image: "assets/images/disney.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Javelina",
     breed: "Black shepherd",
     gender: "Female",
     birthDate: "15.02.2022",
-    featureOfDog: "Average height. Not sterilized",
+    dogFeatures: "Average height. Not sterilized",
     image: "assets/images/javelina.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Rocket",
     breed: "Metis dachshund",
     gender: "Female",
     birthDate: "12.01.2021",
-    featureOfDog: "Small height. Sterilized",
+    dogFeatures: "Small height. Sterilized",
     image: "assets/images/rocket.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Happy",
     breed: "Metis",
     gender: "Female",
     birthDate: "30.05.2022",
-    featureOfDog: "Average height. Not sterilized",
+    dogFeatures: "Average height. Not sterilized",
     image: "assets/images/happy.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Baks",
     breed: "Am. Bully",
     gender: "Male",
     birthDate: "11.05.2023",
-    featureOfDog: "Average height. Not sterilized",
+    dogFeatures: "Average height. Not sterilized",
     image: "assets/images/baks.jpeg",
   ),
-  DogInfo(
+  DogModel(
     name: "Feona",
     breed: "Husky",
     gender: "Female",
     birthDate: "03.09.2023",
-    featureOfDog: "Average height. Not sterilized",
+    dogFeatures: "Average height. Not sterilized",
     image: "assets/images/husky.jpeg",
   ),
 ];

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'dog_info.model.dart';
+import 'dog_model.dart';
 
-class ListDogs extends StatelessWidget {
-  const ListDogs({
+class DogsListWidget extends StatelessWidget {
+  const DogsListWidget({
     super.key,
     required this.dogsList,
   });
 
-  final List<DogInfo> dogsList;
+  final List<DogModel> dogsList;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: dogsList.length,
       itemBuilder: (BuildContext context, int index) {
-        final DogInfo item = dogsList[index];
+        final DogModel item = dogsList[index];
         return GestureDetector(
           onTap: () {},
           child: Card(

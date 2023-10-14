@@ -72,11 +72,11 @@ class _DogsListScreenState extends State<DogsListScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: isLandScape
-            ? GridDogs(
+            ? DogsGridWidget(
                 dogsList: dogsList,
                 columnsCount: columnsCount,
               )
-            : ListDogs(dogsList: dogsList),
+            : DogsListWidget(dogsList: dogsList),
       ),
     );
   }
