@@ -1,4 +1,4 @@
-import 'dog_model.dart';
+import '../dog_model/dog_model.dart';
 
 List<DogModel> dogsList = [
   DogModel(

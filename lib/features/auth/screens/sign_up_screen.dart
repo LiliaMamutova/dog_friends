@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../user.model.dart';
-
-final emailValidator = RegExp(
-    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+import '../helpers/patterns.dart';
+import '../models/user.model.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -69,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   String? _checkEmail(String? value) {
-    final isEmailValid = emailValidator.hasMatch(value!);
+    final isEmailValid = emailPattern.hasMatch(value!);
     if (!isEmailValid) {
       return "This email not valid";
     }

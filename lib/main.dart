@@ -1,7 +1,7 @@
-import 'package:dog_friends/theme_of_colors.dart';
+import 'package:dog_friends/theme_data/color_data/theme_of_colors.dart';
 import 'package:flutter/material.dart';
 
-import 'dogs_list_feature.dart';
+import 'features/dog/screen/dogs_list_feature.dart';
 
 void main() {
   runApp(const MyApp());

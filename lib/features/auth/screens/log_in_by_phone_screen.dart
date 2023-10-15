@@ -1,8 +1,9 @@
-import 'package:dog_friends/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 
-class LogInByEmailScreen extends StatelessWidget {
-  const LogInByEmailScreen({super.key});
+import '../../user/screens/user_profile_screen.dart';
+
+class LogInByPhoneScreen extends StatelessWidget {
+  const LogInByPhoneScreen({super.key});
 
   void goToUserProfile(BuildContext context) {
     Navigator.of(context).push(

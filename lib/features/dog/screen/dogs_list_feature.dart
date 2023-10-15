@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'grid_dogs_widget.dart';
-import 'list_dogs_mock_data.dart';
-import 'list_dogs_widget.dart';
+import '../mock_data/list_dogs_mock_data.dart';
+import '../widgets/grid_dogs_widget.dart';
+import '../widgets/list_dogs_widget.dart';
 
 class DogsListScreen extends StatefulWidget {
   const DogsListScreen({super.key});
@@ -13,6 +13,7 @@ class DogsListScreen extends StatefulWidget {
 
 class _DogsListScreenState extends State<DogsListScreen> {
   bool isGridView = false;
+  static const int minimalScreenWidth = 932;
 
   void changeView() {
     setState(() {
@@ -37,10 +38,11 @@ class _DogsListScreenState extends State<DogsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
-    final bool isEnoughWidth = MediaQuery.of(context).size.width > 932;
-    final int columnsCount = isLandScape && isEnoughWidth ? 4 : 2;
+    final bool isLandscape =
+        MediaQuery.orientationOf(context) == Orientation.landscape;
+    final bool isEnoughWidth =
+        MediaQuery.of(context).size.width > minimalScreenWidth;
+    final int columnsCount = isLandscape && isEnoughWidth ? 4 : 2;
 
     return Scaffold(
       appBar: AppBar(actions: [
@@ -71,7 +73,7 @@ class _DogsListScreenState extends State<DogsListScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: isLandScape
+        child: isLandscape
             ? DogsGridWidget(
                 dogsList: dogsList,
                 columnsCount: columnsCount,

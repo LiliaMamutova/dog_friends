@@ -4,7 +4,7 @@ final theme = ThemeData(
   primaryColor: const Color(0xFF90a955),
   hintColor: const Color(0xA498A1A2),
   scaffoldBackgroundColor: const Color(0x5C15A5F3),
-  inputDecorationTheme: InputDecorationTheme(),
+  inputDecorationTheme: const InputDecorationTheme(),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Colors.white,
@@ -26,6 +26,3 @@ final theme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
 );
-// darkTheme: ThemeData (
-//
-// )

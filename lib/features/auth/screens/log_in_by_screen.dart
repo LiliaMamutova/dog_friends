@@ -1,5 +1,5 @@
-import 'package:dog_friends/log_in_by_email_screen.dart';
-import 'package:dog_friends/log_in_by_phone_screen.dart';
+import 'package:dog_friends/features/auth/screens/log_in_by_email_screen.dart';
+import 'package:dog_friends/features/auth/screens/log_in_by_phone_screen.dart';
 import 'package:flutter/material.dart';
 
 class LogInByScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
-import 'package:dog_friends/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../helpers.dart';
+import '../mock_data/helpers.dart';
+import 'sign_up_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);

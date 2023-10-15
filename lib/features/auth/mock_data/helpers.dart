@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'icon_text_data.model.dart';
+import '../models/icon_text_data.model.dart';
 
 final List<IconTextData> goalOfApp = [
   IconTextData(const Icon(Icons.pets),
