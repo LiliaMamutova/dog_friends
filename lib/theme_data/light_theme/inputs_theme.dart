@@ -7,11 +7,11 @@ import 'text_theme.dart';
 final mainInputTheme = InputDecorationTheme(
   iconColor: lightTerracotta,
   hintStyle: labelMedium.copyWith(
-    color: lightBlue,
+    color: lightTerracotta,
   ),
   border: const OutlineInputBorder(
     borderSide: BorderSide(
-      color: lightBlue,
+      color: darkBlue,
       width: 1.0,
     ),
     borderRadius: BorderRadius.all(
@@ -25,7 +25,7 @@ final mainInputTheme = InputDecorationTheme(
   enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(borderRadius),
     borderSide: const BorderSide(
-      color: lightBlue,
+      color: darkBlue,
       width: 1.0,
     ),
   ),
@@ -42,13 +42,13 @@ final mainInputTheme = InputDecorationTheme(
     width: 1.0,
   ),
   labelStyle: labelMedium.copyWith(
-    color: lightBlue,
+    color: darkBlue,
   ),
   errorStyle: labelMedium.copyWith(
     color: errorColor,
   ),
   filled: false,
   prefixStyle: const TextStyle(
-    color: lightBlue,
+    color: darkBlue,
   ),
 );

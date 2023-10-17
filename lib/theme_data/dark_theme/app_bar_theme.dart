@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'color_scheme.dart';
 
 final appBarTheme = AppBarTheme(
-  actionsIconTheme: const IconThemeData(color: Colors.grey),
-  iconTheme: const IconThemeData(color: lightGreenYellow),
+  actionsIconTheme: const IconThemeData(color: Colors.white),
+  iconTheme: const IconThemeData(color: lightBlue),
   elevation: 0,
-  backgroundColor: greenButtonText.withOpacity(0.2),
-  foregroundColor: lightGreenYellow,
+  backgroundColor: blueButtonText.withOpacity(0.2),
+  foregroundColor: lightBlue,
   titleTextStyle: headlineSmall,
 );

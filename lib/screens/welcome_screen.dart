@@ -25,12 +25,25 @@ class WelcomeScreen extends StatelessWidget {
             ),
             Text(
               "Dog friends",
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: const Color(0xffc7c0c8)),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => goTo(context),
-              child: const Text("Start"),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => goTo(context),
+                child: const Text(
+                  "Start",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: "LilitaOneScript",
+                  ),
+                ),
+              ),
             ),
           ],
         ),

@@ -13,7 +13,7 @@ const displayMedium = TextStyle(
   fontSize: 48.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.bold,
-  color: lightPurple,
+  color: darkBlue,
 );
 
 const displaySmall = TextStyle(
@@ -27,7 +27,7 @@ const headlineLarge = TextStyle(
   fontSize: 32.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.bold,
-  color: lightPurple,
+  color: darkBlue,
 );
 
 const headlineMedium = TextStyle(
@@ -48,15 +48,14 @@ const titleLarge = TextStyle(
   fontSize: 58.0,
   fontFamily: "RubikMoonrocks",
   fontStyle: FontStyle.normal,
-  color: lightPurple,
+  color: darkBlue,
 );
 
 const titleMedium = TextStyle(
-  //text input in log and pass
   fontSize: 22.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.normal,
-  color: white,
+  color: darkBlue,
 );
 
 const titleSmall = TextStyle(
@@ -70,14 +69,14 @@ const bodyLarge = TextStyle(
   fontSize: 24.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.normal,
-  color: lightPurple,
+  color: darkBlue,
 );
 
 const bodyMedium = TextStyle(
   fontSize: 22.0,
   fontFamily: "Mallanna",
   fontWeight: FontWeight.normal,
-  color: lightPurple,
+  color: darkBlue,
 );
 
 const bodySmall = TextStyle(
@@ -91,7 +90,7 @@ const labelLarge = TextStyle(
   fontSize: 16.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.normal,
-  color: darkBlue,
+  color: lightPurple,
 );
 
 const labelMedium = TextStyle(

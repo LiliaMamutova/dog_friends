@@ -1,4 +1,4 @@
-import 'package:dog_friends/theme_data/dark_theme/text_theme.dart';
+import 'package:dog_friends/theme_data/light_theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'color_scheme.dart';

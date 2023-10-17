@@ -50,21 +50,20 @@ class AuthScreen extends StatelessWidget {
               child: RichText(
                 selectionColor: Colors.white,
                 text: TextSpan(
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    height: 1.6,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Color(0xffc7c0c8), height: 1.6,
+                        // fontSize: 20,
+                      ),
                   children: [
-                    const TextSpan(
+                    TextSpan(
                       text:
                           "This app is especially suitable for people who: \n",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontFamily: "LilitaOneScript",
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(color: Color(0xffc7c0c8)),
                     ),
+                    // ),
                     ...textIconsListWidgets,
                   ],
                 ),

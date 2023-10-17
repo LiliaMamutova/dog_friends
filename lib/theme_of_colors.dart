@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 final theme = ThemeData(
   primaryColor: const Color(0xFF90a955),
-  // Основний колір (зелений)
   hintColor: const Color(0xA498A1A2),
-  // Акцентний колір (темно-зелений)
   scaffoldBackgroundColor: const Color(0x5C15A5F3),
   inputDecorationTheme: InputDecorationTheme(),
   textTheme: const TextTheme(
