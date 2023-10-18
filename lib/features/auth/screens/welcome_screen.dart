@@ -26,10 +26,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             Text(
               "Dog friends",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: const Color(0xffc7c0c8)),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 20),
             SizedBox(

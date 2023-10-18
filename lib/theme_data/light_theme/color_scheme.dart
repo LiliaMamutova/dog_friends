@@ -10,7 +10,7 @@ const lightTerracotta = Color(0xffd1913e);
 
 const errorColor = Color(0xffa92420);
 
-final overlayColor = MaterialStateProperty.all<Color>(
+final darkBlueOpacity = MaterialStateProperty.all<Color>(
   lightPurple.withOpacity(0.9),
 );
 

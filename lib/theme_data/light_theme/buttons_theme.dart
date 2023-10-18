@@ -16,7 +16,7 @@ final elevatedButtonTheme = ElevatedButtonThemeData(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
     ),
-    overlayColor: overlayColor,
+    overlayColor: darkBlueOpacity,
     foregroundColor: MaterialStateProperty.all<Color>(lightPurple),
   ),
 );
@@ -26,6 +26,6 @@ final textButtonTheme = TextButtonThemeData(
     textStyle: MaterialStateProperty.all<TextStyle>(bodyLarge),
     foregroundColor: MaterialStateProperty.all<Color>(blueButtonText),
     splashFactory: InkSparkle.splashFactory,
-    overlayColor: overlayColor,
+    overlayColor: darkBlueOpacity,
   ),
 );

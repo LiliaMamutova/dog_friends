@@ -1,8 +1,12 @@
-import 'package:dog_friends/value_notifier/vn.dart';
+import 'package:dog_friends/shared_widgets/nav_bar_widget.dart';
+import 'package:dog_friends/value_notifier/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({super.key});
+  final void Function()? changeLang;
+
+  const UserProfileScreen({super.key, required this.changeLang});
 
   @override
   Widget build(BuildContext context) {
@@ -16,54 +20,31 @@ class UserProfileScreen extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
-                  notifier.value = notifier.value == ThemeMode.light
-                      ? ThemeMode.dark
-                      : ThemeMode.light;
+                  themeModeNotifier.value =
+                      themeModeNotifier.value == ThemeMode.light
+                          ? ThemeMode.dark
+                          : ThemeMode.light;
                 },
                 icon: const Icon(
                   Icons.pets,
                   size: 30,
                 ),
+              ),
+              IconButton(
+                onPressed: changeLang,
+                icon: const Icon(Icons.language),
               )
             ],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                "Dog friends",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge
-                    ?.copyWith(color: const Color(0xffc7c0c8)),
+                AppLocalizations.of(context)!.dogFriends,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.message,
-              color: Color(0xCE06354E),
-            ),
-            label: "Message",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.pets,
-              color: Color(0xCE06354E),
-            ),
-            label: "List of dogs",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Color(0xCE06354E),
-            ),
-            label: "Search of dogs",
-          ),
-        ],
-      ),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
-// }

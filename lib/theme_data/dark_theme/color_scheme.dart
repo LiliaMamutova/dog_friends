@@ -10,7 +10,7 @@ const deepBlue = Color(0xff0000FF);
 
 const errorColor = Color(0xffa92420);
 
-final overlayColor = MaterialStateProperty.all<Color>(
+final darkBlueOpacity = MaterialStateProperty.all<Color>(
   darkBlue.withOpacity(0.9),
 );
 

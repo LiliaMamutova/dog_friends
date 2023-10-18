@@ -51,17 +51,14 @@ class AuthScreen extends StatelessWidget {
                 selectionColor: Colors.white,
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Color(0xffc7c0c8), height: 1.6,
-                        // fontSize: 20,
+                        color: Color(0xffc7c0c8),
+                        height: 1.6,
                       ),
                   children: [
                     TextSpan(
                       text:
                           "This app is especially suitable for people who: \n",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(color: Color(0xffc7c0c8)),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     // ),
                     ...textIconsListWidgets,

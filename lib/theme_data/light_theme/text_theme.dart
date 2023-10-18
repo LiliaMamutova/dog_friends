@@ -24,8 +24,8 @@ const displaySmall = TextStyle(
 );
 
 const headlineLarge = TextStyle(
-  fontSize: 32.0,
-  fontFamily: "LilitaOneScript",
+  fontSize: 22.0,
+  fontFamily: "RubikMoonrocks",
   fontWeight: FontWeight.bold,
   color: darkBlue,
 );

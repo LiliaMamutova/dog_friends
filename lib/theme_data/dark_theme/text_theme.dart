@@ -24,8 +24,9 @@ const displaySmall = TextStyle(
 );
 
 const headlineLarge = TextStyle(
-  fontSize: 32.0,
-  fontFamily: "LilitaOneScript",
+  // appBar text
+  fontSize: 22.0,
+  fontFamily: "RubikMoonrocks",
   fontWeight: FontWeight.bold,
   color: lightPurple,
 );
@@ -105,7 +106,7 @@ const labelSmall = TextStyle(
   fontSize: 12.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.normal,
-  color: darkBlue,
+  color: lightPurple,
 );
 
 const captionLarge = TextStyle(
