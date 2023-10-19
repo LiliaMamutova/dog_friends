@@ -7,7 +7,7 @@ import 'color_scheme.dart';
 import 'inputs_theme.dart';
 import 'snackbar_theme.dart';
 import 'text_selection_theme.dart';
-import 'text_theme.dart';
+import 'text_styles.dart';
 import 'toggle_button_theme.dart';
 
 final lightTheme = ThemeData(

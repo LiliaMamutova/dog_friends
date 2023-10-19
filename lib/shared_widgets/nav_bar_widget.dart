@@ -8,6 +8,8 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppLocalizations.of(context)!;
+
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
@@ -15,25 +17,23 @@ class NavBar extends StatelessWidget {
             Icons.message,
             size: 29,
           ),
-          label: AppLocalizations.of(context)!.bottomNavigationBarIconMessage,
+          label: strings.bottomNavigationBarIconMessage,
         ),
         BottomNavigationBarItem(
           icon: const Icon(
             Icons.pets,
             size: 29,
           ),
-          label:
-              AppLocalizations.of(context)!.bottomNavigationBarIconListOfDogs,
+          label: strings.bottomNavigationBarIconListOfDogs,
         ),
         BottomNavigationBarItem(
           icon: const Icon(
-            Icons.search,
+            Icons.other_houses,
             size: 29,
           ),
-          label:
-              AppLocalizations.of(context)!.bottomNavigationBarIconSearchOfDog,
+          label: strings.bottomNavigationBarIconDogProfile,
         ),
       ],
     );
   }
-}
+

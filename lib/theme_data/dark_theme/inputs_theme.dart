@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'color_scheme.dart';
 import 'measurements.dart';
-import 'text_theme.dart';
+import 'text_styles.dart';
 
 final mainInputTheme = InputDecorationTheme(
   iconColor: lightTerracotta,

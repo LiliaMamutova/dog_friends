@@ -51,7 +51,7 @@ class AuthScreen extends StatelessWidget {
                 selectionColor: Colors.white,
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Color(0xffc7c0c8),
+                        // color: lightPurple,
                         height: 1.6,
                       ),
                   children: [
