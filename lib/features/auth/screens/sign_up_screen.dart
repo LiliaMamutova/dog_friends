@@ -163,9 +163,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   // const Spacer(),
-                  ElevatedButton(
-                    onPressed: _submitForm,
-                    child: const Text("Submit"),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: _submitForm,
+                      child: const Text(
+                        "Submit",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: "LilitaOneScript",
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -32,9 +32,13 @@ dependencies:
     sdk: flutter
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -52,10 +56,24 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
   fonts:
     - family: lilitaOneScript
       fonts:
         - asset: assets/fonts/LilitaOne_script.ttf
+
+    - family: RubikMoonrocks
+      fonts:
+        - asset: assets/fonts/RubikMoonrocks.ttf
+
+    - family: Mallanna
+      fonts:
+        - asset: assets/fonts/Mallanna.ttf
+
+    - family: Sriracha
+      fonts:
+        - asset: assets/fonts/Sriracha.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

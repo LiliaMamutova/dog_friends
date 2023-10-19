@@ -6,8 +6,10 @@ class LogInByPhoneScreen extends StatelessWidget {
   const LogInByPhoneScreen({super.key});
 
   void goToUserProfile(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const UserProfileScreen()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const UserProfileScreen(
+              changeLang: null,
+            )));
   }
 
   @override

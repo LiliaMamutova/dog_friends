@@ -29,9 +29,19 @@ class WelcomeScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => goTo(context),
-              child: const Text("Start"),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => goTo(context),
+                child: const Text(
+                  "Start",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: "LilitaOneScript",
+                  ),
+                ),
+              ),
             ),
           ],
         ),
