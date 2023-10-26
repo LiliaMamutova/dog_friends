@@ -31,9 +31,9 @@ class NavBar extends StatelessWidget {
             Icons.other_houses,
             size: 29,
           ),
-          label: strings.bottomNavigationBarIconDogProfile,
+          label: strings.bottomNavigationBarIconUserProfile,
         ),
       ],
     );
   }
-
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../shared_const/error_message_required.dart';
 import '../helpers/patterns.dart';
 import '../models/user.model.dart';
 
@@ -12,7 +13,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  static const errorMessageRequired = "This field is required";
   final _formKey = GlobalKey<FormState>();
 
   late final User _user = User();
@@ -173,6 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(
                           fontSize: 25,
                           fontFamily: "LilitaOneScript",
+                          // Theme.of(context).textButtonTheme.titleSmall,
                         ),
                       ),
                     ),

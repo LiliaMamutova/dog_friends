@@ -1,6 +1,9 @@
+import 'package:dog_friends/features/dog/dog_model/dog_model.dart';
+import 'package:dog_friends/features/dog/screen/dog_profile_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../mock_data/list_dogs_mock_data.dart';
+import '../../../shared_widgets/nav_bar_widget.dart';
+import '../../user/service/dogs_api.dart';
 import '../widgets/grid_dogs_widget.dart';
 import '../widgets/list_dogs_widget.dart';
 
@@ -11,9 +14,29 @@ class DogsListScreen extends StatefulWidget {
   State<DogsListScreen> createState() => _DogsListScreenState();
 }
 
+const mockImageUrl =
+    "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
+
 class _DogsListScreenState extends State<DogsListScreen> {
+  final dogsApi = DogApi();
+  List<DogModel> dogsList = [];
   bool isGridView = false;
   static const int minimalScreenWidth = 932;
+
+  @override
+  void initState() {
+    super.initState();
+    getDogs();
+  }
+
+  Future<void> getDogs() async {
+    print("trigger dogs");
+    dogsList = await dogsApi.getDogsList();
+    setState(() {
+      dogsList = [...dogsList];
+      print(dogsList);
+    });
+  }
 
   void changeView() {
     setState(() {
@@ -31,9 +54,32 @@ class _DogsListScreenState extends State<DogsListScreen> {
     //     .push(MaterialPageRoute(builder: (context) => const DogsListFeature()));
   }
 
-  void goToSearch(BuildContext context) {
+  void goToHome(BuildContext context) {
     // Navigator.of(context)
     //     .push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+  }
+
+  void removeDog(int id) async {
+    await dogsApi.deleteDog(id);
+    setState(() {
+      dogsList.removeWhere((element) => element.id == id);
+    });
+  }
+
+  void goToCreateDogScreen() {
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => DogProfileScreen(
+          dog: DogModel(image: mockImageUrl),
+          isNewDog: true,
+        ),
+      ),
+    )
+        .then((dog) {
+      setState(() {});
+      dogsList.add(dog);
+    });
   }
 
   @override
@@ -45,29 +91,20 @@ class _DogsListScreenState extends State<DogsListScreen> {
     final int columnsCount = isLandscape && isEnoughWidth ? 4 : 2;
 
     return Scaffold(
-      appBar: AppBar(actions: [
-        IconButton(
-          onPressed: changeView,
-          icon: const Icon(
-            Icons.pets,
-            size: 45,
-            color: Color(0xCE06284E),
-          ),
-        )
-      ]),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: "Message",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pets),
-            label: "List of dogs",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search of dogs",
+      bottomNavigationBar: const NavBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: goToCreateDogScreen,
+        ),
+        actions: [
+          IconButton(
+            onPressed: changeView,
+            icon: const Icon(
+              Icons.pets,
+              size: 45,
+              color: Color(0xCE06284E),
+            ),
           ),
         ],
       ),
@@ -78,7 +115,10 @@ class _DogsListScreenState extends State<DogsListScreen> {
                 dogsList: dogsList,
                 columnsCount: columnsCount,
               )
-            : DogsListWidget(dogsList: dogsList),
+            : DogsListWidget(
+                dogsList: dogsList,
+                removeDog: removeDog,
+              ),
       ),
     );
   }

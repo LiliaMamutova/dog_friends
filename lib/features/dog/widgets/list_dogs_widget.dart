@@ -1,15 +1,18 @@
+import 'package:dog_friends/features/dog/screen/dog_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../dog_model/dog_model.dart';
 import 'list_dog_card_widget.dart';
 
 class DogsListWidget extends StatelessWidget {
+  final List<DogModel> dogsList;
+  final void Function(int id) removeDog;
+
   const DogsListWidget({
     super.key,
     required this.dogsList,
+    required this.removeDog,
   });
-
-  final List<DogModel> dogsList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,14 @@ class DogsListWidget extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         final DogModel item = dogsList[index];
         return GestureDetector(
-          onTap: () {},
-          child: ListDogCardWidget(item: item),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DogProfileScreen(dog: item)));
+          },
+          child: ListDogCardWidget(
+            item: item,
+            removeDog: removeDog,
+          ),
         );
       },
     );
