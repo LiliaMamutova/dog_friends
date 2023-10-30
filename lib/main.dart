@@ -1,12 +1,14 @@
-import 'package:dog_friends/features/user/screens/user_profile_screen.dart';
 import 'package:dog_friends/theme_data/dark_theme/dark_theme.dart';
 import 'package:dog_friends/theme_data/light_theme/light_theme.dart';
 import 'package:dog_friends/value_notifier/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'features/dog/screen/dogs_list_feature.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 const uk = Locale("uk");
@@ -48,7 +50,7 @@ class _MyAppState extends State<MyApp> {
           ) {
             return locale?.last;
           },
-          home: UserProfileScreen(changeLang: setLocale),
+          home: const DogsListScreen(),
         );
       },
     );

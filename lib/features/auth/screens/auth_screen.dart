@@ -81,6 +81,7 @@ class AuthScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 25,
                       fontFamily: "LilitaOneScript",
+                      // Theme.of(context).textButtonTheme.titleSmall,
                     ),
                   ),
                 ),
@@ -95,6 +96,7 @@ class AuthScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 25,
                       fontFamily: "LilitaOneScript",
+                      // Theme.of(context).textButtonTheme.titleSmall,
                     ),
                   ),
                 ),

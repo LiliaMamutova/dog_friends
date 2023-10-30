@@ -61,10 +61,11 @@ const titleMedium = TextStyle(
 );
 
 const titleSmall = TextStyle(
+  //card text
   fontSize: 18.0,
   fontFamily: "LilitaOneScript",
   fontWeight: FontWeight.normal,
-  color: darkBlue,
+  color: lightPurple,
 );
 
 const bodyLarge = TextStyle(

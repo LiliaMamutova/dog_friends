@@ -1,17 +1,52 @@
+import 'dart:convert';
+
+const mockImageUrl =
+    "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
+
 class DogModel {
-  String image;
-  String name;
-  String breed;
-  String gender;
-  String birthDate;
-  String dogFeatures;
+  int id;
+  String image = "";
+  String name = "";
+  String breed = "";
+  String gender = "";
+  String birthDate = "";
+  String dogFeatures = "";
 
   DogModel({
-    required this.image,
-    required this.name,
-    required this.breed,
-    required this.gender,
-    required this.birthDate,
-    required this.dogFeatures,
+    this.image = "",
+    this.name = "",
+    this.breed = "",
+    this.gender = "",
+    this.birthDate = "",
+    this.dogFeatures = "",
+    this.id = 0,
   });
+
+  factory DogModel.fromMap(Map<String, dynamic> mapDog) {
+    final dog = DogModel(
+      id: mapDog["id"],
+      image: mapDog["image"] ?? mockImageUrl,
+      name: mapDog["name"]!,
+      breed: mapDog["breed"]!,
+      gender: mapDog["gender"]!,
+      birthDate: mapDog["birthDate"]!,
+      dogFeatures: mapDog["dogFeatures"]!,
+    );
+
+    return dog;
+  }
+
+  @override
+  String toString() {
+    Map<String, dynamic> mapDog = {
+      "image": image,
+      "name": name,
+      "breed": breed,
+      "gender": gender,
+      "birthDate": birthDate,
+      "dogFeatures": dogFeatures,
+    };
+
+    return jsonEncode(mapDog);
+  }
 }
