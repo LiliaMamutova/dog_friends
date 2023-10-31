@@ -1,19 +1,23 @@
+import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../dog_model/dog_model.dart';
 
-class ListDogCardWidget extends StatelessWidget {
+class ListDogCardWidget extends ConsumerWidget {
   final DogModel item;
-  final void Function(int id) removeDog;
 
   const ListDogCardWidget({
     super.key,
     required this.item,
-    required this.removeDog,
   });
 
+  void removerDog(WidgetRef ref, DogModel dog) {
+    ref.read(dogsNotifierProvider.notifier).removeDog(dog);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       color: Theme.of(context).colorScheme.background,
       clipBehavior: Clip.antiAlias,
@@ -59,7 +63,8 @@ class ListDogCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 alignment: Alignment.centerRight,
-                onPressed: () => removeDog(item.id),
+                onPressed: () => removerDog(ref, item),
+                // onPressed: () => removeDog(item.id),
                 icon: const Icon(
                   Icons.restore_from_trash,
                   // size: 45,

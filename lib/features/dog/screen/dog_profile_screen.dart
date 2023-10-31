@@ -1,27 +1,28 @@
+import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
 import 'package:dog_friends/features/user/service/dogs_api.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared_const/error_message_required.dart';
 import '../../../shared_helpers/date_helpers.dart';
+import '../../../shared_provider/theme_mode_notifier.dart';
 import '../dog_model/dog_model.dart';
 
 enum Gender { male, female }
 
-class DogProfileScreen extends StatefulWidget {
-  final DogModel dog;
+class DogProfileScreen extends ConsumerStatefulWidget {
   final bool isNewDog;
+  final int? id;
 
-  const DogProfileScreen({
-    super.key,
-    required this.dog,
-    this.isNewDog = false,
-  });
+  const DogProfileScreen({super.key, this.isNewDog = false, this.id});
 
   @override
-  State<DogProfileScreen> createState() => _DogProfileScreenState();
+  ConsumerState<DogProfileScreen> createState() => _DogProfileScreenState();
 }
 
-class _DogProfileScreenState extends State<DogProfileScreen> {
+class _DogProfileScreenState extends ConsumerState<DogProfileScreen> {
+  late DogModel dog;
+
   final _formKey = GlobalKey<FormState>();
   final dogApi = DogApi();
   DateTime? _selectedDate;
@@ -32,34 +33,50 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
   @override
   void initState() {
     super.initState();
+    getDogById();
     setDogsAge();
+  }
+
+  void _changeThemeMode() {
+    ref.read(themeNotifierProvider.notifier).changeThemeMode();
   }
 
   void setDogsAge() {
     if (!widget.isNewDog) {
-      final date = DateTime.tryParse(widget.dog.birthDate)!;
+      final date = DateTime.tryParse(dog.birthDate)!;
       dogAge = countAge(date);
     }
   }
 
-  void editPage() {}
+  void getDogById() {
+    //todo: remove mock image/data when back will be ready
+    if (widget.isNewDog) {
+      dog = DogModel(image: mockImageUrl);
+    } else {
+      dog = ref.read(dogsNotifierProvider.notifier).getDogById(widget.id!);
+    }
+  }
 
   void _saveDogName(String? value) {
-    widget.dog.name = value!;
+    if (value != null) {
+      dog.name = value;
+    }
   }
 
   void _saveDogBreed(String? value) {
-    widget.dog.breed = value!;
+    if (value != null) {
+      dog.breed = value;
+    }
   }
 
   void _saveDogFeatures(String? value) {
-    widget.dog.dogFeatures = value!;
+    dog.dogFeatures = value!;
   }
 
   void dropdownCallback(selectedValue) {
     setState(() {
       _selectedGender = selectedValue;
-      widget.dog.gender = selectedValue.toString().split(".").last;
+      dog.gender = selectedValue.toString().split(".").last;
     });
   }
 
@@ -88,7 +105,7 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
       setState(() {
         dogAge = countAge(_selectedDate);
       });
-      widget.dog.birthDate = date.toIso8601String();
+      dog.birthDate = date.toIso8601String();
     });
   }
 
@@ -104,7 +121,8 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
     final isValid = validateAndSaveFormValues();
 
     if (isValid) {
-      dogApi.editDog(widget.dog);
+      ref.read(dogsNotifierProvider.notifier).editDog(dog);
+      Navigator.of(context).pop();
     }
   }
 
@@ -112,10 +130,8 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
     final isValid = validateAndSaveFormValues();
 
     if (isValid) {
-      await dogApi.createDog(widget.dog);
-      if (context.mounted) {
-        Navigator.of(context).pop(widget.dog);
-      }
+      ref.read(dogsNotifierProvider.notifier).createDog(dog);
+      Navigator.of(context).pop();
     }
   }
 
@@ -134,11 +150,10 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: editPage,
+            onPressed: () => _changeThemeMode(),
             icon: const Icon(
               Icons.pets,
-              size: 45,
-              color: Color(0xCE06284E),
+              size: 30,
             ),
           ),
         ],
@@ -153,9 +168,9 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Hero(
-                  tag: "avatar-${widget.dog.id}",
+                  tag: "avatar-${dog.id}",
                   child: Image.network(
-                    widget.dog.image,
+                    dog.image,
                     height: 380,
                     width: 350,
                     alignment: Alignment.topLeft,
@@ -164,7 +179,7 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
                 const SizedBox(height: 20),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Name"),
-                  initialValue: widget.dog.name,
+                  initialValue: dog.name,
                   onSaved: _saveDogName,
                   validator: _validate,
                   keyboardType: TextInputType.name,
@@ -172,7 +187,7 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
                 const SizedBox(height: 20),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Breed"),
-                  initialValue: widget.dog.breed,
+                  initialValue: dog.breed,
                   onSaved: _saveDogBreed,
                   validator: _validate,
                   keyboardType: TextInputType.text,
@@ -206,7 +221,7 @@ class _DogProfileScreenState extends State<DogProfileScreen> {
                 TextFormField(
                   decoration:
                       const InputDecoration(labelText: "Dog's features"),
-                  initialValue: widget.dog.dogFeatures,
+                  initialValue: dog.dogFeatures,
                   onSaved: _saveDogFeatures,
                   validator: _validate,
                   keyboardType: TextInputType.text,

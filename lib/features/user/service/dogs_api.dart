@@ -19,7 +19,6 @@ class DogApi {
       dogsList.add(dog);
     }
 
-    print(dogsList);
     return dogsList;
   }
 

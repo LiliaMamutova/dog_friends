@@ -1,15 +1,23 @@
+import 'package:dog_friends/shared_provider/localization_notifier.dart';
+import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:dog_friends/shared_widgets/nav_bar_widget.dart';
-import 'package:dog_friends/value_notifier/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserProfileScreen extends StatelessWidget {
-  final void Function()? changeLang;
+class UserProfileScreen extends ConsumerWidget {
+  const UserProfileScreen({super.key});
 
-  const UserProfileScreen({super.key, required this.changeLang});
+  void _changeThemeMode(WidgetRef ref) {
+    ref.read(themeNotifierProvider.notifier).changeThemeMode();
+  }
+
+  void _changeLocale(WidgetRef ref) {
+    ref.read(localizationNotifierProvider.notifier).changeLocale();
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -19,19 +27,14 @@ class UserProfileScreen extends StatelessWidget {
             pinned: true,
             actions: [
               IconButton(
-                onPressed: () {
-                  themeModeNotifier.value =
-                      themeModeNotifier.value == ThemeMode.light
-                          ? ThemeMode.dark
-                          : ThemeMode.light;
-                },
+                onPressed: () => _changeThemeMode(ref),
                 icon: const Icon(
                   Icons.pets,
                   size: 30,
                 ),
               ),
               IconButton(
-                onPressed: changeLang,
+                onPressed: () => _changeLocale(ref),
                 icon: const Icon(Icons.language),
               )
             ],

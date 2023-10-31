@@ -1,23 +1,26 @@
 import 'package:dog_friends/features/dog/dog_model/dog_model.dart';
+import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
 import 'package:dog_friends/features/dog/screen/dog_profile_screen.dart';
+import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared_widgets/nav_bar_widget.dart';
 import '../../user/service/dogs_api.dart';
 import '../widgets/grid_dogs_widget.dart';
 import '../widgets/list_dogs_widget.dart';
 
-class DogsListScreen extends StatefulWidget {
+class DogsListScreen extends ConsumerStatefulWidget {
   const DogsListScreen({super.key});
 
   @override
-  State<DogsListScreen> createState() => _DogsListScreenState();
+  ConsumerState<DogsListScreen> createState() => _DogsListScreenState();
 }
 
 const mockImageUrl =
     "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
 
-class _DogsListScreenState extends State<DogsListScreen> {
+class _DogsListScreenState extends ConsumerState<DogsListScreen> {
   final dogsApi = DogApi();
   List<DogModel> dogsList = [];
   bool isGridView = false;
@@ -26,16 +29,6 @@ class _DogsListScreenState extends State<DogsListScreen> {
   @override
   void initState() {
     super.initState();
-    getDogs();
-  }
-
-  Future<void> getDogs() async {
-    print("trigger dogs");
-    dogsList = await dogsApi.getDogsList();
-    setState(() {
-      dogsList = [...dogsList];
-      print(dogsList);
-    });
   }
 
   void changeView() {
@@ -59,27 +52,18 @@ class _DogsListScreenState extends State<DogsListScreen> {
     //     .push(MaterialPageRoute(builder: (context) => const SearchScreen()));
   }
 
-  void removeDog(int id) async {
-    await dogsApi.deleteDog(id);
-    setState(() {
-      dogsList.removeWhere((element) => element.id == id);
-    });
-  }
-
   void goToCreateDogScreen() {
-    Navigator.of(context)
-        .push(
+    Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => DogProfileScreen(
-          dog: DogModel(image: mockImageUrl),
+        builder: (context) => const DogProfileScreen(
           isNewDog: true,
         ),
       ),
-    )
-        .then((dog) {
-      setState(() {});
-      dogsList.add(dog);
-    });
+    );
+  }
+
+  void _changeThemeMode() {
+    ref.read(themeNotifierProvider.notifier).changeThemeMode();
   }
 
   @override
@@ -90,6 +74,8 @@ class _DogsListScreenState extends State<DogsListScreen> {
         MediaQuery.of(context).size.width > minimalScreenWidth;
     final int columnsCount = isLandscape && isEnoughWidth ? 4 : 2;
 
+    final data = ref.watch(dogsNotifierProvider);
+
     return Scaffold(
       bottomNavigationBar: const NavBar(),
       appBar: AppBar(
@@ -99,26 +85,30 @@ class _DogsListScreenState extends State<DogsListScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: changeView,
+            onPressed: _changeThemeMode,
             icon: const Icon(
               Icons.pets,
-              size: 45,
-              color: Color(0xCE06284E),
+              size: 30,
             ),
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: isLandscape
-            ? DogsGridWidget(
-                dogsList: dogsList,
-                columnsCount: columnsCount,
-              )
-            : DogsListWidget(
-                dogsList: dogsList,
-                removeDog: removeDog,
-              ),
+      body: Center(
+        child: switch (data) {
+          AsyncData(:final value) => Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: isLandscape
+                  ? DogsGridWidget(
+                      dogsList: value,
+                      columnsCount: columnsCount,
+                    )
+                  : DogsListWidget(
+                      dogsList: value,
+                    ),
+            ),
+          AsyncError() => const Text("Some error occured"),
+          _ => const CircularProgressIndicator(),
+        },
       ),
     );
   }
