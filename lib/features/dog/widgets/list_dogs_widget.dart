@@ -6,12 +6,10 @@ import 'list_dog_card_widget.dart';
 
 class DogsListWidget extends StatelessWidget {
   final List<DogModel> dogsList;
-  final void Function(int id) removeDog;
 
   const DogsListWidget({
     super.key,
     required this.dogsList,
-    required this.removeDog,
   });
 
   @override
@@ -23,11 +21,10 @@ class DogsListWidget extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => DogProfileScreen(dog: item)));
+                builder: (context) => DogProfileScreen(id: item.id)));
           },
           child: ListDogCardWidget(
             item: item,
-            removeDog: removeDog,
           ),
         );
       },
