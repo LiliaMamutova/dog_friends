@@ -1,5 +1,4 @@
 import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
-import 'package:dog_friends/features/user/service/dogs_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +23,6 @@ class _DogProfileScreenState extends ConsumerState<DogProfileScreen> {
   late DogModel dog;
 
   final _formKey = GlobalKey<FormState>();
-  final dogApi = DogApi();
   DateTime? _selectedDate;
   Gender _selectedGender = Gender.female;
 

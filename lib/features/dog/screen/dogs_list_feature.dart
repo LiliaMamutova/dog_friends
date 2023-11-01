@@ -71,10 +71,8 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
     final bool isLandscape =
         MediaQuery.orientationOf(context) == Orientation.landscape;
     final bool isEnoughWidth =
-        MediaQuery.of(context).size.width > minimalScreenWidth;
+        MediaQuery.sizeOf(context).width > minimalScreenWidth;
     final int columnsCount = isLandscape && isEnoughWidth ? 4 : 2;
-
-    final data = ref.watch(dogsNotifierProvider);
 
     return Scaffold(
       bottomNavigationBar: const NavBar(),
@@ -94,7 +92,7 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
         ],
       ),
       body: Center(
-        child: switch (data) {
+        child: switch (ref.watch(dogsNotifierProvider)) {
           AsyncData(:final value) => Padding(
               padding: const EdgeInsets.all(10.0),
               child: isLandscape

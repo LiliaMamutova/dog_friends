@@ -1,6 +1,7 @@
 import 'package:dog_friends/theme_data/dark_theme/bottom_navigation_bar_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../dark_theme/card_theme.dart';
 import 'app_bar_theme.dart';
 import 'buttons_theme.dart';
 import 'color_scheme.dart';
@@ -24,4 +25,5 @@ final darkTheme = ThemeData(
   textSelectionTheme: textSelectionTheme,
   toggleButtonsTheme: toggleButtonsTheme,
   bottomNavigationBarTheme: bottomNavigationBarTheme,
+  cardTheme: cardTheme,
 );

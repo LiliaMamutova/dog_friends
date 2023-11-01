@@ -64,6 +64,6 @@ final dogsProvider = Provider<DogApi>((ref) => DogApi());
 
 final dogsNotifierProvider =
     StateNotifierProvider<DogNotifier, AsyncValue<List<DogModel>>>((ref) {
-  DogApi dogApi = ref.read(dogsProvider);
-  return DogNotifier(dogApi);
+  DogApi dogApiProvider = ref.read(dogsProvider);
+  return DogNotifier(dogApiProvider);
 });

@@ -19,7 +19,6 @@ class ListDogCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
-      color: Theme.of(context).colorScheme.background,
       clipBehavior: Clip.antiAlias,
       child: SizedBox(
         height: 100,
