@@ -1,23 +1,27 @@
-import 'package:dog_friends/shared_provider/localization_notifier.dart';
-import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
-import 'package:dog_friends/shared_widgets/nav_bar_widget.dart';
+import 'package:dog_friends/features/user/bloc/theme_mode_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UserProfileScreen extends ConsumerWidget {
+import '../../../shared_widgets/nav_bar_widget.dart';
+
+// class UserProfileScreen extends ConsumerWidget {
+//   const UserProfileScreen({super.key});
+//
+//   void _changeThemeMode(WidgetRef ref) {
+//     ref.read(themeNotifierProvider.notifier).changeThemeMode();
+//   }
+//
+//   void _changeLocale(WidgetRef ref) {
+//     ref.read(localizationNotifierProvider.notifier).changeLocale();
+//   }
+
+class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
 
-  void _changeThemeMode(WidgetRef ref) {
-    ref.read(themeNotifierProvider.notifier).changeThemeMode();
-  }
-
-  void _changeLocale(WidgetRef ref) {
-    ref.read(localizationNotifierProvider.notifier).changeLocale();
-  }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    ThemeModeCubit theme =
+        BlocProvider.of<ThemeModeCubit>(context, listen: false);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -27,20 +31,21 @@ class UserProfileScreen extends ConsumerWidget {
             pinned: true,
             actions: [
               IconButton(
-                onPressed: () => _changeThemeMode(ref),
+                onPressed: () => theme.changeThemeMode(),
                 icon: const Icon(
-                  Icons.pets,
+                  Icons.dark_mode,
                   size: 30,
                 ),
               ),
-              IconButton(
-                onPressed: () => _changeLocale(ref),
-                icon: const Icon(Icons.language),
-              )
+              // IconButton(
+              //   onPressed: () => _changeLocale(ref),
+              //   icon: const Icon(Icons.language),
+              // )
             ],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                AppLocalizations.of(context)!.dogFriends,
+                "",
+                // AppLocalizations.of(context)!.dogFriends,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),

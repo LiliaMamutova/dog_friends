@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -8,30 +7,28 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = AppLocalizations.of(context)!;
-
     return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
+      items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: const Icon(
+          icon: Icon(
             Icons.message,
             size: 29,
           ),
-          label: strings.bottomNavigationBarIconMessage,
+          label: "Message",
         ),
         BottomNavigationBarItem(
-          icon: const Icon(
+          icon: Icon(
             Icons.pets,
             size: 29,
           ),
-          label: strings.bottomNavigationBarIconListOfDogs,
+          label: "List of dogs",
         ),
         BottomNavigationBarItem(
-          icon: const Icon(
+          icon: Icon(
             Icons.other_houses,
             size: 29,
           ),
-          label: strings.bottomNavigationBarIconUserProfile,
+          label: "User profile",
         ),
       ],
     );
