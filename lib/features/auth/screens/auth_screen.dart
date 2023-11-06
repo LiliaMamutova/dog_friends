@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../mock_data/helpers.dart';
-import 'sign_up_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
-  void goToSignUp(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
-  }
-
-  void goToSignIn(BuildContext context) {
-    //todo: implement navigation to signInScreen
-  }
+  // void goToSignIn(BuildContext context) {
+  //   //todo: implement navigation to signInScreen
+  // }
 
   List<InlineSpan> _createTextIconsListWidgets() {
     final List<InlineSpan> textIconsListWidgets = [];
@@ -75,7 +70,7 @@ class AuthScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 3,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () => goToSignIn(context),
+                  onPressed: () => context.push("/dogsList"),
                   child: const Text(
                     "Sign in",
                     style: TextStyle(
@@ -90,7 +85,8 @@ class AuthScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 3,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () => goToSignUp(context),
+                  onPressed: () => context.push("/signUp"),
+                  // context.pop(),
                   child: const Text(
                     "Sign up",
                     style: TextStyle(

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'auth_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
-
-  void goTo(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const AuthScreen()));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 3,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => goTo(context),
+                onPressed: () => context.push("/auth"),
                 child: const Text(
                   "Start",
                   style: TextStyle(
