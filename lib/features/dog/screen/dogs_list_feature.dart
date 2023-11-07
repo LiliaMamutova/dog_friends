@@ -1,9 +1,9 @@
 import 'package:dog_friends/features/dog/dog_model/dog_model.dart';
 import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
-import 'package:dog_friends/features/dog/screen/dog_profile_screen.dart';
 import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared_widgets/nav_bar_widget.dart';
 import '../../user/service/dogs_api.dart';
@@ -53,13 +53,15 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
   }
 
   void goToCreateDogScreen() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const DogProfileScreen(
-          isNewDog: true,
-        ),
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => const DogProfileScreen(
+    //       isNewDog: true,
+    //     ),
+    //   ),
+    // );
+
+    context.push("/dogProfile");
   }
 
   void _changeThemeMode() {
@@ -79,7 +81,7 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.add),
-          onPressed: goToCreateDogScreen,
+          onPressed: () => goToCreateDogScreen(),
         ),
         actions: [
           IconButton(
@@ -104,7 +106,7 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
                       dogsList: value,
                     ),
             ),
-          AsyncError() => const Text("Some error occured"),
+          AsyncError() => const Text("Some error occurred"),
           _ => const CircularProgressIndicator(),
         },
       ),

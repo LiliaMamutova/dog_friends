@@ -2,7 +2,7 @@ import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../shared_const/error_message_required.dart';
+import '../../../shared_errors/error_message_required.dart';
 import '../../../shared_helpers/date_helpers.dart';
 import '../../../shared_provider/theme_mode_notifier.dart';
 import '../dog_model/dog_model.dart';

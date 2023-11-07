@@ -1,7 +1,7 @@
+import 'package:dog_friends/shared_errors/error_message_required.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../shared_const/error_message_required.dart';
 import '../helpers/patterns.dart';
 import '../models/user.model.dart';
 
