@@ -21,8 +21,10 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
     try {
       await _dogApi.deleteDog(dog.id);
       oldState.remove(dog);
+      print(oldState);
       state = AsyncValue.data([...oldState]);
     } catch (error, stackTrace) {
+      print(error);
       state = AsyncValue.error(error, stackTrace);
     }
   }
@@ -42,6 +44,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
   void editDog(DogModel dog) async {
     final oldState = state.requireValue;
     final dogIndex = oldState.indexOf(dog);
+
     oldState[dogIndex] = dog;
     state = const AsyncValue.loading();
     try {

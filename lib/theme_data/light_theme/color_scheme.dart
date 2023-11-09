@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const darkBlue = Color(0xCE06354E);
+const darkBlue = Color(0xFF06354E);
 const blueButtonText = Color(0xff007aa9);
 const lightBlue = Color(0xff9ec3e0);
 const lightPurple = Color(0xffc7c0c8);
