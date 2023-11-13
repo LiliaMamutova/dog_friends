@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../mock_data/helpers.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends ConsumerWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   // void goToSignIn(BuildContext context) {
@@ -31,7 +32,7 @@ class AuthScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textIconsListWidgets = _createTextIconsListWidgets();
 
     return Scaffold(
@@ -43,7 +44,7 @@ class AuthScreen extends StatelessWidget {
               height: 400,
               width: 350,
               child: RichText(
-                selectionColor: Colors.white,
+                // selectionColor: Colors.white,
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         // color: lightPurple,
@@ -70,7 +71,7 @@ class AuthScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 3,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () => context.push("/dogsList"),
+                  onPressed: () => context.push("/signIn"),
                   child: const Text(
                     "Sign in",
                     style: TextStyle(

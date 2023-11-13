@@ -27,9 +27,10 @@ class UserProfileScreen extends ConsumerWidget {
             pinned: true,
             actions: [
               IconButton(
+                // вивести в setting_screen _changeThemeMode/_changeLocale
                 onPressed: () => _changeThemeMode(ref),
                 icon: const Icon(
-                  Icons.pets,
+                  Icons.dark_mode,
                   size: 30,
                 ),
               ),

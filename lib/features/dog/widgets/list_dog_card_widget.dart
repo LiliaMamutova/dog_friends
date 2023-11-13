@@ -69,7 +69,7 @@ class ListDogCardWidget extends ConsumerWidget {
                   // size: 45,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
