@@ -20,8 +20,12 @@ class DogsListWidget extends StatelessWidget {
         final DogModel item = dogsList[index];
         return GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => DogProfileScreen(id: item.id)));
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) =>
+                    DogProfileScreen(isNewDog: false, id: item.id),
+              ),
+            );
           },
           child: ListDogCardWidget(
             item: item,

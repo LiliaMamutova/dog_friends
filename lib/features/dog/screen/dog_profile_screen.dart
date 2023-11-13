@@ -13,7 +13,7 @@ class DogProfileScreen extends ConsumerStatefulWidget {
   final bool isNewDog;
   final int? id;
 
-  const DogProfileScreen({super.key, this.isNewDog = false, this.id});
+  const DogProfileScreen({super.key, this.isNewDog = true, this.id});
 
   @override
   ConsumerState<DogProfileScreen> createState() => _DogProfileScreenState();
@@ -150,7 +150,7 @@ class _DogProfileScreenState extends ConsumerState<DogProfileScreen> {
           IconButton(
             onPressed: () => _changeThemeMode(),
             icon: const Icon(
-              Icons.pets,
+              Icons.dark_mode,
               size: 30,
             ),
           ),
