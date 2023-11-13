@@ -24,6 +24,11 @@ final GoRouter _router = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const SignUpScreen(),
     ),
+    // GoRoute(
+    //   path: "/signIn",
+    //   builder: (BuildContext context, GoRouterState state) =>
+    //   const SignInScreen(),
+    // ),
     GoRoute(
       path: "/dogsList",
       builder: (BuildContext context, GoRouterState state) =>

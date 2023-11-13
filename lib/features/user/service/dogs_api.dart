@@ -1,20 +1,24 @@
 import "dart:convert";
 
-import "package:http/http.dart" as http;
+import "package:dio/dio.dart";
 
 import "../../dog/dog_model/dog_model.dart";
 
 const apiUrl = "http://192.168.1.103:3000";
 
 class DogApi {
+  final dio = Dio(BaseOptions(
+    baseUrl: apiUrl,
+    connectTimeout: const Duration(seconds: 2),
+    receiveTimeout: const Duration(seconds: 2),
+  ));
+
   Future<List<DogModel>> getDogsList() async {
-    Uri url = Uri.parse("$apiUrl/dogs");
-    final response = await http.get(url);
-    final data = jsonDecode(response.body);
+    final response = await dio.get("/dogs");
     final List<DogModel> dogsList = [];
 
-    for (int i = 0; i < data.length; i++) {
-      final dogMap = data[i];
+    for (int i = 0; i < response.data.length; i++) {
+      final dogMap = response.data[i];
       final dog = DogModel.fromMap(dogMap);
       dogsList.add(dog);
     }
@@ -23,35 +27,36 @@ class DogApi {
   }
 
   Future<DogModel> getDog(int id) async {
-    Uri url = Uri.parse("$apiUrl/dogs/:${id.toString()}");
-    final response = await http.get(url);
-    final dogMap = jsonDecode(response.body);
+    final Response response = await dio.get(
+      "/dogs",
+      queryParameters: {"id": id.toString()},
+    );
+    print(response);
+    final dogMap = jsonDecode(response.data);
     final DogModel dog = DogModel.fromMap(dogMap);
 
     return dog;
   }
 
   Future<void> createDog(DogModel dog) async {
-    Uri url = Uri.parse("$apiUrl/dogs");
-    final response = await http.post(url, body: dog.toString());
-    print(response.body);
+    final Response response =
+        await dio.post("/dogs", data: {"dog": dog.toString()});
+    print(response.data);
   }
 
   Future<void> deleteDog(int id) async {
-    Uri url = Uri.parse("$apiUrl/dogs/:${id.toString()}");
-    final response = await http.delete(url);
-    final data = jsonDecode(response.body);
-    print(data);
+    print(dio.options.baseUrl);
+
+    final Response response = await dio.delete("/dogs/${id.toString()}");
+    print(response);
   }
 
   Future<void> editDog(DogModel dog) async {
-    print(dog.id);
-    Uri url = Uri.parse("$apiUrl/dogs/:${dog.id.toString()}");
-    final response = await http.put(
-      url,
-      headers: {"Content-Type": "application/json"},
-      body: dog.toString(),
+    print(dio.options.baseUrl);
+    final Response response = await dio.put(
+      "/dogs/${dog.id.toString()}",
+      data: dog,
     );
-    final data = jsonDecode(response.body);
+    print(response.data);
   }
 }

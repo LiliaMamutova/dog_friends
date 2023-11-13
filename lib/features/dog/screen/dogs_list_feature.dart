@@ -3,12 +3,12 @@ import 'package:dog_friends/features/dog/provider_dogs/dog_provider.dart';
 import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../shared_widgets/nav_bar_widget.dart';
 import '../../user/service/dogs_api.dart';
 import '../widgets/grid_dogs_widget.dart';
 import '../widgets/list_dogs_widget.dart';
+import 'dog_profile_screen.dart';
 
 class DogsListScreen extends ConsumerStatefulWidget {
   const DogsListScreen({super.key});
@@ -53,15 +53,13 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
   }
 
   void goToCreateDogScreen() {
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (context) => const DogProfileScreen(
-    //       isNewDog: true,
-    //     ),
-    //   ),
-    // );
-
-    context.push("/dogProfile");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const DogProfileScreen(
+          isNewDog: true,
+        ),
+      ),
+    );
   }
 
   void _changeThemeMode() {
@@ -87,7 +85,7 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
           IconButton(
             onPressed: _changeThemeMode,
             icon: const Icon(
-              Icons.pets,
+              Icons.dark_mode,
               size: 30,
             ),
           ),

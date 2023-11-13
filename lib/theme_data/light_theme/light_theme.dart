@@ -1,4 +1,5 @@
 import 'package:dog_friends/theme_data/light_theme/card_theme.dart';
+import 'package:dog_friends/theme_data/light_theme/date_picker_theme_data.dart';
 import 'package:flutter/material.dart';
 
 import 'app_bar_theme.dart';
@@ -26,4 +27,5 @@ final lightTheme = ThemeData(
   toggleButtonsTheme: toggleButtonsTheme,
   bottomNavigationBarTheme: bottomNavigationBarTheme,
   cardTheme: cardTheme,
+  datePickerTheme: datePickerTheme,
 );

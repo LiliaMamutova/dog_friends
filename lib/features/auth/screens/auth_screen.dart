@@ -1,3 +1,4 @@
+import 'package:dog_friends/theme_data/dark_theme/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,6 +36,7 @@ class AuthScreen extends StatelessWidget {
     final textIconsListWidgets = _createTextIconsListWidgets();
 
     return Scaffold(
+      backgroundColor: darkBlue,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -46,7 +48,6 @@ class AuthScreen extends StatelessWidget {
                 selectionColor: Colors.white,
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        // color: lightPurple,
                         height: 1.6,
                       ),
                   children: [
@@ -92,7 +93,7 @@ class AuthScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 25,
                       fontFamily: "LilitaOneScript",
-                      // Theme.of(context).textButtonTheme.titleSmall,
+                      // Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                 ),

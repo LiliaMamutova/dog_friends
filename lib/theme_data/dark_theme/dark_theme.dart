@@ -5,6 +5,7 @@ import '../dark_theme/card_theme.dart';
 import 'app_bar_theme.dart';
 import 'buttons_theme.dart';
 import 'color_scheme.dart';
+import 'date_picker_theme_data.dart';
 import 'inputs_theme.dart';
 import 'snackbar_theme.dart';
 import 'text_selection_theme.dart';
@@ -26,4 +27,5 @@ final darkTheme = ThemeData(
   toggleButtonsTheme: toggleButtonsTheme,
   bottomNavigationBarTheme: bottomNavigationBarTheme,
   cardTheme: cardTheme,
+  datePickerTheme: datePickerTheme,
 );

@@ -1,3 +1,4 @@
+import 'package:dog_friends/theme_data/dark_theme/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,13 +29,12 @@ class WelcomeScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () => context.push("/auth"),
-                child: const Text(
+                child: Text(
                   "Start",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: "LilitaOneScript",
-                    // Theme.of(context).textButtonTheme.titleSmall,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: darkBlue),
                 ),
               ),
             ),
