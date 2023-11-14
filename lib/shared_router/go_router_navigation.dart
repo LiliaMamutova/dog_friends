@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/screens/auth_screen.dart';
+import '../features/auth/screens/sign_in_screen.dart';
 import '../features/auth/screens/sign_up_screen.dart';
 import '../features/dog/screen/dog_profile_screen.dart';
 
@@ -24,11 +25,11 @@ final GoRouter _router = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const SignUpScreen(),
     ),
-    // GoRoute(
-    //   path: "/signIn",
-    //   builder: (BuildContext context, GoRouterState state) =>
-    //   const SignInScreen(),
-    // ),
+    GoRoute(
+      path: "/signIn",
+      builder: (BuildContext context, GoRouterState state) =>
+          const SignInScreen(),
+    ),
     GoRoute(
       path: "/dogsList",
       builder: (BuildContext context, GoRouterState state) =>

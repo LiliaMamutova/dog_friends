@@ -18,6 +18,8 @@ class UserProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ThemeMode mode = ref.watch(themeNotifierProvider);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -27,9 +29,10 @@ class UserProfileScreen extends ConsumerWidget {
             pinned: true,
             actions: [
               IconButton(
+                // вивести в setting_screen _changeThemeMode/_changeLocale
                 onPressed: () => _changeThemeMode(ref),
-                icon: const Icon(
-                  Icons.pets,
+                icon: Icon(
+                  mode == ThemeMode.dark ? Icons.dark_mode : Icons.sunny,
                   size: 30,
                 ),
               ),
