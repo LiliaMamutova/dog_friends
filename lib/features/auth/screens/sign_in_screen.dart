@@ -14,7 +14,7 @@ class SignInScreen extends ConsumerStatefulWidget {
 }
 
 class _SignInScreenState extends ConsumerState<SignInScreen> {
-  var currentIndex = 0;
+  bool isLogIn = true;
   final _formKey = GlobalKey<FormState>();
 
   late final User _user = User();
@@ -77,131 +77,142 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     return null;
   }
 
-  // void _buttonClicked() {
-  //   setState(() {
-  //     var title = "Sign up";
-  //   });
-  // }
+  void _setAuthProcedure() {
+    setState(() {
+      isLogIn = !isLogIn;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    String title = "Log in";
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-        child: Form(
-          key: _formKey,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.03,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            child: Form(
+              key: _formKey,
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 1.03,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 80),
-                    TextFormField(
-                      onSaved: _saveUserEmail,
-                      validator: (String? value) => _validate(
-                        value,
-                        callBack: _checkEmail,
+                    if (!isLogIn)
+                      Text(
+                        "Please sign up",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              height: 5.0,
+                            ),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "example@mail.com",
-                        labelText: "Enter your email",
-                        filled: true,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      onSaved: _saveUserPassword,
-                      validator: (String? value) => _validate(
-                        value,
-                        callBack: _checkPasswordsLength,
-                      ),
-                      obscureText: isPasswordVisible,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: "******",
-                        labelText: "Password",
-                        filled: true,
-                        suffix: IconButton(
-                          icon: const Icon(Icons.remove_red_eye_outlined),
-                          onPressed: _changePasswordVisibility,
+                    Column(
+                      children: [
+                        const SizedBox(height: 40),
+                        TextFormField(
+                          onSaved: _saveUserEmail,
+                          validator: (String? value) => _validate(
+                            value,
+                            callBack: _checkEmail,
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "example@mail.com",
+                            labelText: "Enter your email",
+                            filled: true,
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 3.0,
-                        height: 65,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: _submitForm,
-                            child: const Text(
-                              "Submit",
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontFamily: "LilitaOneScript",
-                                //  style: Theme.of(context).textTheme.titleMedium,
+                        const SizedBox(height: 10),
+                        TextFormField(
+                          onSaved: _saveUserPassword,
+                          validator: (String? value) => _validate(
+                            value,
+                            callBack: _checkPasswordsLength,
+                          ),
+                          obscureText: isPasswordVisible,
+                          decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            hintText: "******",
+                            labelText: "Password",
+                            filled: true,
+                            suffix: IconButton(
+                              icon: const Icon(Icons.remove_red_eye_outlined),
+                              onPressed: _changePasswordVisibility,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        if (!isLogIn)
+                          TextFormField(
+                            onSaved: _saveUserPassword,
+                            validator: (String? value) => _validate(
+                              value,
+                              callBack: _checkPasswordsLength,
+                            ),
+                            obscureText: isPasswordVisible,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              hintText: "******",
+                              labelText: "Enter password again",
+                              filled: true,
+                              suffix: IconButton(
+                                icon: const Icon(Icons.remove_red_eye_outlined),
+                                onPressed: _changePasswordVisibility,
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3.0,
-                      height: 65,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              title = "Sign up";
-                            });
-                          },
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontFamily: "LilitaOneScript",
-                              //  style: Theme.of(context).textTheme.titleMedium,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width / 3.0,
+                                height: 65,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ElevatedButton(
+                                    onPressed: _submitForm,
+                                    child: const Text(
+                                      "Submit",
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontFamily: "LilitaOneScript",
+                                        //  style: Theme.of(context).textTheme.titleMedium,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 3.0,
+                              height: 65,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  onPressed: _setAuthProcedure,
+                                  child: Text(
+                                    isLogIn ? "Log in" : "Sign up",
+                                    // style: const TextStyle(
+                                    //   fontSize: 25,
+                                    //   fontFamily: "LilitaOneScript",
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // ),
+                          ],
                         ),
-                      ),
+                      ],
                     ),
-                    // SizedBox(
-                    //   width: MediaQuery.of(context).size.width / 3.0,
-                    //   height: 65,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: ElevatedButton(
-                    //       onPressed: _submitForm,
-                    //       child: const Text(
-                    //         "Log in",
-                    //         style: TextStyle(
-                    //           fontSize: 25,
-                    //           fontFamily: "LilitaOneScript",
-                    //           //  style: Theme.of(context).textTheme.titleMedium,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
