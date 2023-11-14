@@ -17,7 +17,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   bool isLogIn = true;
   final _formKey = GlobalKey<FormState>();
 
-  late final User _user = User();
+  final User _user = User();
 
   bool isPasswordVisible = false;
 
@@ -196,9 +196,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                   onPressed: _setAuthProcedure,
                                   child: Text(
                                     isLogIn ? "Log in" : "Sign up",
-                                    // style: const TextStyle(
-                                    //   fontSize: 25,
-                                    //   fontFamily: "LilitaOneScript",
                                     style:
                                         Theme.of(context).textTheme.titleMedium,
                                   ),
