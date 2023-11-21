@@ -4,7 +4,8 @@ const mockImageUrl =
     "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
 
 class DogModel {
-  int id;
+  String userId = "";
+  String id;
   String image = "";
   String name = "";
   String breed = "";
@@ -19,7 +20,8 @@ class DogModel {
     this.gender = "",
     this.birthDate = "",
     this.dogFeatures = "",
-    this.id = 0,
+    this.id = "0",
+    this.userId = "",
   });
 
   factory DogModel.fromMap(Map<String, dynamic> mapDog) {

@@ -1,4 +1,5 @@
 import 'package:dog_friends/features/user/screens/user_profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,7 +7,9 @@ import '../../../shared_errors/error_message_required.dart';
 import '../helpers/patterns.dart';
 import '../models/user.model.dart';
 
-class SignInScreen extends ConsumerStatefulWidget {
+final _firebase = FirebaseAuth.instance;
+
+final class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
 
   @override
@@ -14,10 +17,11 @@ class SignInScreen extends ConsumerStatefulWidget {
 }
 
 class _SignInScreenState extends ConsumerState<SignInScreen> {
+  String _password = "";
   bool isLogIn = true;
   final _formKey = GlobalKey<FormState>();
 
-  final User _user = User();
+  final UserAuthData _user = UserAuthData();
 
   bool isPasswordVisible = false;
 
@@ -32,12 +36,54 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         MaterialPageRoute(builder: (context) => const UserProfileScreen()));
   }
 
-  void _submitForm() {
+  void _onSubmit() async {
     final isFormValid = _formKey.currentState?.validate();
 
     if (isFormValid != null && isFormValid) {
       _formKey.currentState!.save();
       goToUserProfile(context);
+    }
+
+    if (isLogIn) {
+      final userCredentials = await _firebase.signInWithEmailAndPassword(
+          email: _user.email!, password: _user.password!);
+      print(userCredentials);
+    } else {
+      try {
+        if (_user.email == null || _user.password == null) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Empty credentials"),
+            ),
+          );
+          return;
+        }
+
+        if (_user.email!.isEmpty || _user.password!.isEmpty) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Empty credentials"),
+            ),
+          );
+
+          return;
+        }
+        final userCredentials = await _firebase.createUserWithEmailAndPassword(
+          email: _user.email!,
+          password: _user.password!,
+        );
+        print(userCredentials);
+      } on FirebaseAuthException catch (error) {
+        if (error.code == "email-already-in-use") {}
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message ?? "Authentication failed"),
+          ),
+        );
+      }
     }
   }
 
@@ -50,11 +96,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   }
 
   String? _validate(String? value, {Function(String? value)? callBack}) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return errorMessageRequired;
-    }
-
-    if (callBack != null) {
+    } else if (callBack != null) {
       return callBack(value);
     }
 
@@ -83,6 +127,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     });
   }
 
+  String? _checkPasswordAreEqual(String? repeatedPassword) {
+    if (repeatedPassword != null && _password != repeatedPassword) {
+      return "Password does not match. Please re-type again";
+    }
+    return null;
+  }
+
+  void _onPasswordChanged(String value) {
+    _password = value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -100,13 +155,14 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if (!isLogIn)
-                      Text(
-                        "Please sign up",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              height: 5.0,
-                            ),
-                      ),
+                    Text(
+                      isLogIn
+                          ? "I already have an account"
+                          : "Please create an account",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            height: 5.0,
+                          ),
+                    ),
                     Column(
                       children: [
                         const SizedBox(height: 40),
@@ -117,6 +173,8 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                             callBack: _checkEmail,
                           ),
                           keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          textCapitalization: TextCapitalization.none,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: "example@mail.com",
@@ -126,7 +184,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
+                          keyboardType: TextInputType.text,
                           onSaved: _saveUserPassword,
+                          onChanged: _onPasswordChanged,
                           validator: (String? value) => _validate(
                             value,
                             callBack: _checkPasswordsLength,
@@ -146,10 +206,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                         const SizedBox(height: 10),
                         if (!isLogIn)
                           TextFormField(
-                            onSaved: _saveUserPassword,
+                            keyboardType: TextInputType.text,
+                            onSaved: null,
                             validator: (String? value) => _validate(
                               value,
-                              callBack: _checkPasswordsLength,
+                              callBack: _checkPasswordAreEqual,
                             ),
                             obscureText: isPasswordVisible,
                             decoration: InputDecoration(
@@ -174,14 +235,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
-                                    onPressed: _submitForm,
+                                    onPressed: _onSubmit,
                                     child: const Text(
                                       "Submit",
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        fontFamily: "LilitaOneScript",
-                                        //  style: Theme.of(context).textTheme.titleMedium,
-                                      ),
                                     ),
                                   ),
                                 ),
@@ -195,14 +251,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                 child: TextButton(
                                   onPressed: _setAuthProcedure,
                                   child: Text(
-                                    isLogIn ? "Log in" : "Sign up",
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
+                                    isLogIn ? "Sign up" : "Log in",
                                   ),
                                 ),
                               ),
                             ),
-                            // ),
                           ],
                         ),
                       ],

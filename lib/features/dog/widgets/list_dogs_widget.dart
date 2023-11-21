@@ -23,7 +23,7 @@ class DogsListWidget extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) =>
-                    DogProfileScreen(isNewDog: false, id: item.id),
+                    DogProfileScreen(isNewDog: false, id: item.id.toString()),
               ),
             );
           },

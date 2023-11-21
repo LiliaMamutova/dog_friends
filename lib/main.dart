@@ -1,14 +1,22 @@
+import 'package:dog_friends/firebase_options.dart';
 import 'package:dog_friends/shared_provider/localization_notifier.dart';
 import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:dog_friends/shared_router/go_router_navigation.dart';
 import 'package:dog_friends/theme_data/dark_theme/dark_theme.dart';
 import 'package:dog_friends/theme_data/light_theme/light_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
+void main() async {
   runApp(const ProviderScope(child: MyApp()));
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends ConsumerStatefulWidget {

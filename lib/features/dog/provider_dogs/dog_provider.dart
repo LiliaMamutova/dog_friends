@@ -55,7 +55,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
     }
   }
 
-  DogModel getDogById(int id) {
+  DogModel getDogById(String id) {
     final dogs = state.requireValue;
 
     final dog = dogs.firstWhere((element) => element.id == id);

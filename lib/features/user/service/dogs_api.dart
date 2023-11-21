@@ -26,7 +26,7 @@ class DogApi {
     return dogsList;
   }
 
-  Future<DogModel> getDog(int id) async {
+  Future<DogModel> getDog(String id) async {
     final Response response = await dio.get(
       "/dogs",
       queryParameters: {"id": id.toString()},
@@ -44,7 +44,7 @@ class DogApi {
     print(response.data);
   }
 
-  Future<void> deleteDog(int id) async {
+  Future<void> deleteDog(String id) async {
     print(dio.options.baseUrl);
 
     final Response response = await dio.delete("/dogs/${id.toString()}");
