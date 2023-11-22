@@ -1,5 +1,6 @@
 import 'package:dog_friends/features/auth/screens/welcome_screen.dart';
 import 'package:dog_friends/features/dog/screen/dogs_list_feature.dart';
+import 'package:dog_friends/features/user/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,6 +40,11 @@ final GoRouter _router = GoRouter(
       path: "/dogProfile",
       builder: (BuildContext context, GoRouterState state) =>
           const DogProfileScreen(),
+    ),
+    GoRoute(
+      path: "/setting",
+      builder: (BuildContext context, GoRouterState state) =>
+          const SettingScreen(),
     ),
   ],
 );
