@@ -5,7 +5,6 @@ import 'package:dog_friends/shared_router/go_router_navigation.dart';
 import 'package:dog_friends/theme_data/dark_theme/dark_theme.dart';
 import 'package:dog_friends/theme_data/light_theme/light_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

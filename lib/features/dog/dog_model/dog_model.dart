@@ -38,6 +38,19 @@ class DogModel {
     return dog;
   }
 
+  Map<String, String> toMap(String userId) {
+    Map<String, String> mapDog = {
+      "name": name,
+      "breed": breed,
+      "gender": gender,
+      "birthDate": birthDate,
+      "dogFeatures": dogFeatures,
+      "userId": userId,
+    };
+
+    return mapDog;
+  }
+
   @override
   String toString() {
     Map<String, dynamic> mapDog = {
