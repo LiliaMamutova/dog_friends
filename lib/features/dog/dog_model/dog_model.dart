@@ -26,7 +26,7 @@ class DogModel {
 
   factory DogModel.fromMap(Map<String, dynamic> mapDog) {
     final dog = DogModel(
-      id: mapDog["id"],
+      id: mapDog["id"] ?? "",
       image: mapDog["image"] ?? mockImageUrl,
       name: mapDog["name"]!,
       breed: mapDog["breed"]!,
@@ -46,6 +46,7 @@ class DogModel {
       "birthDate": birthDate,
       "dogFeatures": dogFeatures,
       "userId": userId,
+      // "id": docId,
     };
 
     return mapDog;

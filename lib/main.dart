@@ -10,10 +10,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
 
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "dog-friends-2023",
     options: DefaultFirebaseOptions.currentPlatform,
   );
 }

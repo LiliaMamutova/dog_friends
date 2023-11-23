@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '333915198544',
     projectId: 'dog-friends-2023',
     authDomain: 'dog-friends-2023.firebaseapp.com',
+    databaseURL: 'https://dog-friends-2023-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dog-friends-2023.appspot.com',
     measurementId: 'G-V73L2XMPRK',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:333915198544:android:58b6b668bab9af16da2d55',
     messagingSenderId: '333915198544',
     projectId: 'dog-friends-2023',
+    databaseURL: 'https://dog-friends-2023-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dog-friends-2023.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:333915198544:ios:bc52c3698b27dca9da2d55',
     messagingSenderId: '333915198544',
     projectId: 'dog-friends-2023',
+    databaseURL: 'https://dog-friends-2023-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dog-friends-2023.appspot.com',
     iosBundleId: 'com.example.dogFriends',
   );
@@ -75,6 +78,7 @@ class DefaultFirebaseOptions {
     appId: '1:333915198544:ios:929cc43815a755b2da2d55',
     messagingSenderId: '333915198544',
     projectId: 'dog-friends-2023',
+    databaseURL: 'https://dog-friends-2023-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dog-friends-2023.appspot.com',
     iosBundleId: 'com.example.dogFriends.RunnerTests',
   );
