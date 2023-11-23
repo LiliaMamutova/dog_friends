@@ -16,7 +16,7 @@ class SignUpScreen extends ConsumerStatefulWidget {
 class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  late final User _user = User();
+  late final UserAuthData _user = UserAuthData();
 
   bool isPasswordVisible = false;
 

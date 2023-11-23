@@ -4,7 +4,8 @@ const mockImageUrl =
     "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
 
 class DogModel {
-  int id;
+  String userId = "";
+  String id;
   String image = "";
   String name = "";
   String breed = "";
@@ -19,12 +20,13 @@ class DogModel {
     this.gender = "",
     this.birthDate = "",
     this.dogFeatures = "",
-    this.id = 0,
+    this.id = "0",
+    this.userId = "",
   });
 
   factory DogModel.fromMap(Map<String, dynamic> mapDog) {
     final dog = DogModel(
-      id: mapDog["id"],
+      id: mapDog["id"] ?? "",
       image: mapDog["image"] ?? mockImageUrl,
       name: mapDog["name"]!,
       breed: mapDog["breed"]!,
@@ -34,6 +36,20 @@ class DogModel {
     );
 
     return dog;
+  }
+
+  Map<String, String> toMap(String userId) {
+    Map<String, String> mapDog = {
+      "name": name,
+      "breed": breed,
+      "gender": gender,
+      "birthDate": birthDate,
+      "dogFeatures": dogFeatures,
+      "userId": userId,
+      // "id": docId,
+    };
+
+    return mapDog;
   }
 
   @override

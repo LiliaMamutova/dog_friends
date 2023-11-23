@@ -11,7 +11,7 @@ enum Gender { male, female }
 
 class DogProfileScreen extends ConsumerStatefulWidget {
   final bool isNewDog;
-  final int? id;
+  final String? id;
 
   const DogProfileScreen({super.key, this.isNewDog = true, this.id});
 
