@@ -7,10 +7,6 @@ import '../mock_data/helpers.dart';
 class AuthScreen extends ConsumerWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
-  // void goToSignIn(BuildContext context) {
-  //   //todo: implement navigation to signInScreen
-  // }
-
   List<InlineSpan> _createTextIconsListWidgets() {
     final List<InlineSpan> textIconsListWidgets = [];
 
@@ -36,7 +32,6 @@ class AuthScreen extends ConsumerWidget {
     final textIconsListWidgets = _createTextIconsListWidgets();
 
     return Scaffold(
-      // backgroundColor: darkBlue,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -73,28 +68,7 @@ class AuthScreen extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () => context.push("/signIn"),
                   child: const Text(
-                    "Sign in",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: "LilitaOneScript",
-                      // Theme.of(context).textButtonTheme.titleSmall,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () => context.push("/signUp"),
-                  // context.pop(),
-                  child: const Text(
-                    "Sign up",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: "LilitaOneScript",
-                      // Theme.of(context).textTheme.titleSmall,
-                    ),
+                    "Proceed",
                   ),
                 ),
               ),

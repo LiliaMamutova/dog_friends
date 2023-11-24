@@ -1,6 +1,8 @@
 import 'package:dog_friends/features/auth/screens/welcome_screen.dart';
 import 'package:dog_friends/features/dog/screen/dogs_list_feature.dart';
+import 'package:dog_friends/features/user/screens/chat_screen.dart';
 import 'package:dog_friends/features/user/screens/setting_screen.dart';
+import 'package:dog_friends/features/user/screens/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,6 +48,21 @@ final GoRouter _router = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const SettingScreen(),
     ),
+    GoRoute(
+      path: "/message",
+      builder: (BuildContext context, GoRouterState state) =>
+          const ChatScreen(),
+    ),
+    GoRoute(
+      path: "/userProfile",
+      builder: (BuildContext context, GoRouterState state) =>
+          const UserProfileScreen(),
+    ),
+    // GoRoute(
+    //   path: "/setting",
+    //   builder: (BuildContext context, GoRouterState state) =>
+    // const SettingScreen(),
+    // ),
   ],
 );
 

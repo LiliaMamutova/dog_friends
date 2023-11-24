@@ -6,13 +6,17 @@ import '../dog_model/dog_model.dart';
 class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
   final DogApi _dogApi;
 
-  DogNotifier(this._dogApi) : super(const AsyncLoading()) {
+  DogNotifier(this._dogApi) : super(AsyncValue.data([])) {
     getDogs();
   }
 
   void getDogs() async {
-    final dogsList = await _dogApi.getDogsList();
-    state = AsyncData(dogsList);
+    try {
+      final dogsList = await _dogApi.getDogsList();
+      state = AsyncData(dogsList);
+    } catch (e) {
+      state = AsyncData([]);
+    }
   }
 
   void removeDog(DogModel dog) async {
@@ -30,7 +34,10 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
   }
 
   void createDog(DogModel dog) async {
-    final oldState = state.requireValue;
+    print(state.value);
+    final oldState = state.value != null && state.value!.length > 0
+        ? state.requireValue
+        : [];
     state = const AsyncValue.loading();
     try {
       await _dogApi.createDog(dog);
@@ -55,7 +62,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
     }
   }
 
-  DogModel getDogById(int id) {
+  DogModel getDogById(String id) {
     final dogs = state.requireValue;
 
     final dog = dogs.firstWhere((element) => element.id == id);

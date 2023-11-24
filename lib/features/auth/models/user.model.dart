@@ -1,8 +1,8 @@
-class User {
-  late String userName;
-  late String phoneNumber;
-  late String email;
-  late String password;
+class UserAuthData {
+  String? userName;
+  String? phoneNumber;
+  String? email;
+  String? password;
 
-  User();
+  UserAuthData();
 }
