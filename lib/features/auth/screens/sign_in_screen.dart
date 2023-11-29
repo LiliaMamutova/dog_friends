@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared_errors/error_message_required.dart';
+import '../../user/user_provider/user_provider.dart';
 import '../helpers/patterns.dart';
 import '../models/user.model.dart';
 
@@ -38,53 +39,61 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
 
   void _onSubmit() async {
     final isFormValid = _formKey.currentState?.validate();
-
     if (isFormValid != null && isFormValid) {
       _formKey.currentState!.save();
-      goToUserProfile(context);
+    }
+    if (_user.email == null || _user.password == null) {
+      showScaffoldMessage("Empty credentials");
+      return;
     }
 
+    if (_user.email!.isEmpty || _user.password!.isEmpty) {
+      showScaffoldMessage("Empty credentials");
+      return;
+    }
     if (isLogIn) {
-      final userCredentials = await _firebase.signInWithEmailAndPassword(
-          email: _user.email!, password: _user.password!);
-      print(userCredentials);
+      await loginUser();
     } else {
-      try {
-        if (_user.email == null || _user.password == null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Empty credentials"),
-            ),
-          );
-          return;
-        }
-
-        if (_user.email!.isEmpty || _user.password!.isEmpty) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Empty credentials"),
-            ),
-          );
-
-          return;
-        }
-        final userCredentials = await _firebase.createUserWithEmailAndPassword(
-          email: _user.email!,
-          password: _user.password!,
-        );
-        print(userCredentials);
-      } on FirebaseAuthException catch (error) {
-        if (error.code == "email-already-in-use") {}
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(error.message ?? "Authentication failed"),
-          ),
-        );
-      }
+      await signupUser();
     }
+  }
+
+  Future<void> signupUser() async {
+    try {
+      final userCredentials = await _firebase.createUserWithEmailAndPassword(
+        email: _user.email!,
+        password: _user.password!,
+      );
+      goToUserProfile(context);
+      print("signup: $userCredentials");
+    } on FirebaseAuthException catch (error) {
+      showScaffoldMessage(error.message ?? "Authentication error");
+    }
+  }
+
+  Future<void> loginUser() async {
+    try {
+      final userCredentials = await _firebase.signInWithEmailAndPassword(
+        email: _user.email!,
+        password: _user.password!,
+      );
+      print("login: $userCredentials");
+      ref
+          .read(userNotifierProvider.notifier)
+          .setUserCredential(userCredentials);
+      goToUserProfile(context);
+    } on FirebaseAuthException catch (error) {
+      showScaffoldMessage(error.message ?? "Authentication error");
+    }
+  }
+
+  void showScaffoldMessage(String error) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(error),
+      ),
+    );
   }
 
   void _saveUserEmail(String? value) {
