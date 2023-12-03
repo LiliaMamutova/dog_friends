@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared_errors/error_message_required.dart';
-// import '../../user/user_provider/user_provider.dart';
+import '../../user/user_provider/user_provider.dart';
 import '../helpers/patterns.dart';
 import '../models/user.model.dart';
 
@@ -78,9 +78,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         password: _user.password!,
       );
       print("login: $userCredentials");
-      // ref
-      //     .read(userNotifierProvider.notifier)
-      //     .setUserCredential(userCredentials);
+      ref
+          .read(userNotifierProvider.notifier)
+          .setUserCredential(userCredentials);
       goToUserProfile(context);
     } on FirebaseAuthException catch (error) {
       showScaffoldMessage(error.message ?? "Authentication error");

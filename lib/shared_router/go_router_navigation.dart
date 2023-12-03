@@ -58,11 +58,11 @@ final GoRouter _router = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const UserProfileScreen(),
     ),
-    GoRoute(
-      path: "/setting",
-      builder: (BuildContext context, GoRouterState state) =>
-          const SettingScreen(),
-    ),
+    // GoRoute(
+    //   path: "/setting",
+    //   builder: (BuildContext context, GoRouterState state) =>
+    // const SettingScreen(),
+    // ),
   ],
 );
 
