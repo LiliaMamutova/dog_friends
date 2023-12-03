@@ -16,7 +16,7 @@ class NavBar extends ConsumerWidget {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: TextButton(
-            onPressed: () => context.push("/message"),
+            onPressed: () => context.go("/message"),
             child: const Icon(
               Icons.message,
               size: 29,
@@ -26,7 +26,7 @@ class NavBar extends ConsumerWidget {
         ),
         BottomNavigationBarItem(
           icon: TextButton(
-            onPressed: () => context.push("/dogsList"),
+            onPressed: () => context.go("/dogsList"),
             child: const Icon(
               Icons.pets,
               size: 29,
@@ -36,7 +36,7 @@ class NavBar extends ConsumerWidget {
         ),
         BottomNavigationBarItem(
           icon: TextButton(
-            onPressed: () => context.push("/userProfile"),
+            onPressed: () => context.go("/userProfile"),
             child: const Icon(
               Icons.other_houses,
               size: 29,

@@ -12,14 +12,6 @@ class ChatScreen extends ConsumerStatefulWidget {
   ConsumerState<ChatScreen> createState() => _ChatScreenState();
 }
 
-// void _changeThemeMode(WidgetRef ref) {
-//   ref.read(themeNotifierProvider.notifier).changeThemeMode();
-// }
-//
-// void _changeLocale(WidgetRef ref) {
-//   ref.read(localizationNotifierProvider.notifier).changeLocale();
-// }
-
 class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   Widget build(BuildContext context) {
@@ -32,8 +24,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             pinned: true,
             actions: [
               TextButton(
-                // вивести в setting_screen _changeThemeMode/_changeLocale
-                onPressed: () => context.push("/setting"),
+                onPressed: () => context.go("/setting"),
                 child: const Icon(
                   Icons.settings,
                   size: 30,
