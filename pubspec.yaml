@@ -60,6 +60,8 @@ dependencies:
   flutter_native_splash: ^2.3.5
   firebase_database: ^10.3.5
   cloud_firestore: ^4.13.2
+  image_picker: ^1.0.4
+  
 
 
 

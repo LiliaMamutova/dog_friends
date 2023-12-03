@@ -55,7 +55,7 @@ final GoRouter _router = GoRouter(
     // GoRoute(
     //   path: "/setting",
     //   builder: (BuildContext context, GoRouterState state) =>
-    // const SettingScreen(),
+    //       const SettingScreen(),
     // ),
   ],
 );
