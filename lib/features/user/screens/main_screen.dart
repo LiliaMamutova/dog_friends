@@ -103,6 +103,7 @@ class _MainScreenState extends State<MainScreen> {
     setState(
       () {
         bottomSelectedIndex = pageIndex;
+        print(pageIndex);
         _pageController.animateToPage(
           pageIndex,
           duration: Duration(milliseconds: 300),

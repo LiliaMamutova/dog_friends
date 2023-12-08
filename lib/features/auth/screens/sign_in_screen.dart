@@ -65,6 +65,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         email: _user.email!,
         password: _user.password!,
       );
+      print("signup: $userCredentials");
       ref
           .read(userNotifierProvider.notifier)
           .setUserCredential(userCredentials);
@@ -80,6 +81,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         email: _user.email!,
         password: _user.password!,
       );
+      print("login: $userCredentials");
       ref
           .read(userNotifierProvider.notifier)
           .setUserCredential(userCredentials);
