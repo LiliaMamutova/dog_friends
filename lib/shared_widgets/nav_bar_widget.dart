@@ -15,7 +15,6 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    print(bottomSelectedIndex);
     final strings = AppLocalizations.of(context)!;
 
     return BottomNavigationBar(

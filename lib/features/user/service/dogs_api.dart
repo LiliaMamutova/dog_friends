@@ -23,7 +23,6 @@ class DogRepository {
         final dogMap = data.docs[i].data();
         final docId = data.docs[i].id;
         dogMap["id"] = docId;
-        print(docId);
         listDogModels.add(DogModel.fromMap(dogMap));
       }
     }
@@ -38,7 +37,6 @@ class DogRepository {
         final data = await FirebaseFirestore.instance
             .collection("dogs")
             .add(dog.toMap(user.uid));
-        print(data);
       } else {
         throw Exception("Failed to create dog");
       }
@@ -71,7 +69,6 @@ class DogRepository {
             .collection("dogs")
             .doc(dog.id)
             .update(dog.toMap(user.uid));
-        print(data);
       } else {
         throw Exception("Failed to update dog");
       }
