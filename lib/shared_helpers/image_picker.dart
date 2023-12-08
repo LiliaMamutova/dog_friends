@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PhotoPicker extends StatefulWidget {
@@ -41,6 +42,7 @@ class _PhotoPickerState extends State<PhotoPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppLocalizations.of(context)!;
     final imageUrlExists =
         widget.imageUrl != null && widget.imageUrl!.isNotEmpty;
     final image = imageUrlExists ? NetworkImage(widget.imageUrl!) : null;
@@ -56,7 +58,7 @@ class _PhotoPickerState extends State<PhotoPicker> {
         TextButton.icon(
           onPressed: _pickImage,
           icon: Icon(Icons.image),
-          label: Text("Add image"),
+          label: Text(strings.photoPickerIconAddImage),
         ),
       ],
     );

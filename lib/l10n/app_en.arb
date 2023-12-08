@@ -3,5 +3,12 @@
   "dogFriends": "Dog Friends",
   "bottomNavigationBarIconMessage": "Message",
   "bottomNavigationBarIconListOfDogs": "List of dogs",
-  "bottomNavigationBarIconUserProfile": "User profile"
+  "bottomNavigationBarIconUserProfile": "User profile",
+  "photoPickerIconAddImage": "add image",
+  "userProfileScreenSaveButton": "Save",
+  "userProfileScreenDogName1": "Tokyo",
+  "userProfileScreenDogName2": "Javik",
+  "settingScreenChangeTheme": "Change theme",
+  "settingScreenChangeLocale": "Change locale",
+  "settingScreenSaveButton": "Save"
 }

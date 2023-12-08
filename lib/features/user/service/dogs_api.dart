@@ -1,12 +1,13 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:dio/dio.dart";
 import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_storage/firebase_storage.dart";
 
 import "../../dog/dog_model/dog_model.dart";
 
 const apiUrl = "http://192.168.1.103:3000";
 
-class DogApi {
+class DogRepository {
   final dio = Dio(BaseOptions(
     baseUrl: apiUrl,
     connectTimeout: const Duration(seconds: 5),
@@ -77,5 +78,12 @@ class DogApi {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<String> getDogsImage(String dogId) async {
+    final storageRef =
+        FirebaseStorage.instance.ref().child("dogs_images").child("$dogId.jpg");
+
+    return await storageRef.getDownloadURL();
   }
 }

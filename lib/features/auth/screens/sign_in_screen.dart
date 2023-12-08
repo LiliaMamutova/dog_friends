@@ -1,4 +1,4 @@
-import 'package:dog_friends/features/user/screens/user_profile_screen.dart';
+import 'package:dog_friends/features/user/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +20,7 @@ final class SignInScreen extends ConsumerStatefulWidget {
 class _SignInScreenState extends ConsumerState<SignInScreen> {
   String _password = "";
   bool isLogIn = true;
+  bool isSignUp = true;
   final _formKey = GlobalKey<FormState>();
 
   final UserAuthData _user = UserAuthData();
@@ -33,8 +34,8 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   }
 
   void goToUserProfile(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const UserProfileScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const MainScreen()));
   }
 
   void _onSubmit() async {
@@ -64,8 +65,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         email: _user.email!,
         password: _user.password!,
       );
-      goToUserProfile(context);
       print("signup: $userCredentials");
+      ref
+          .read(userNotifierProvider.notifier)
+          .setUserCredential(userCredentials);
+      goToUserProfile(context);
     } on FirebaseAuthException catch (error) {
       showScaffoldMessage(error.message ?? "Authentication error");
     }
@@ -133,6 +137,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   void _setAuthProcedure() {
     setState(() {
       isLogIn = !isLogIn;
+      isSignUp = !isSignUp;
     });
   }
 

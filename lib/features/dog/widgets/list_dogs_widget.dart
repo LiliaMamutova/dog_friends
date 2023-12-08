@@ -7,7 +7,7 @@ import 'list_dog_card_widget.dart';
 
 class DogsListWidget extends StatelessWidget {
   final List<DogModel> dogsList;
-  final dogApi = DogApi();
+  final dogApi = DogRepository();
 
   DogsListWidget({
     super.key,
