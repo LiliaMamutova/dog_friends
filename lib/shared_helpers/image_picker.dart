@@ -42,7 +42,6 @@ class _PhotoPickerState extends State<PhotoPicker> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.imageUrl);
     final strings = AppLocalizations.of(context)!;
     final imageUrlExists =
         widget.imageUrl != null && widget.imageUrl!.isNotEmpty;

@@ -25,6 +25,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
     try {
       await _dogApi.deleteDog(dog.id);
       oldState.remove(dog);
+      print(oldState);
       state = AsyncValue.data([...oldState]);
     } catch (error, stackTrace) {
       print(error);
@@ -33,6 +34,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
   }
 
   void createDog(DogModel dog) async {
+    print(state.value);
     final oldState = state.value != null && state.value!.length > 0
         ? state.requireValue
         : [];
@@ -40,6 +42,7 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
     try {
       await _dogApi.createDog(dog);
       state = AsyncValue.data([...oldState, dog]);
+      print(state.requireValue);
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
     }

@@ -39,6 +39,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     super.initState();
     userCredentials =
         ref.read(userNotifierProvider.notifier).getUserCredential();
+    print("user profile screen: $userCredentials");
     FirebaseDatabase.instance.ref().child("user");
     getAvatar();
     getData();
@@ -131,6 +132,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     // saving photo end
 
     final currentUser = FirebaseAuth.instance.currentUser;
+    print(currentUser);
 
     await FirebaseFirestore.instance
         .collection("user")
@@ -160,7 +162,6 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
           SizedBox(height: 10),
           PhotoPicker(
             onPickImage: (pickedImage) {
-              print(pickedImage);
               _selectedImage = pickedImage;
             },
             imageUrl: imageUrl,
