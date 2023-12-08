@@ -91,9 +91,6 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
     final userCredential = ref.watch(userNotifierProvider);
     final strings = AppLocalizations.of(context)!;
 
-    print(userCredential?.user?.email);
-    print(userCredential?.user?.displayName);
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
