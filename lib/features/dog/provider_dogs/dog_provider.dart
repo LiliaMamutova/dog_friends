@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../dog_model/dog_model.dart';
 
 class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
-  final DogApi _dogApi;
+  final DogRepository _dogApi;
 
   DogNotifier(this._dogApi) : super(AsyncValue.data([])) {
     getDogs();
@@ -70,10 +70,10 @@ class DogNotifier extends StateNotifier<AsyncValue<List<DogModel>>> {
   }
 }
 
-final dogsProvider = Provider<DogApi>((ref) => DogApi());
+final dogsProvider = Provider<DogRepository>((ref) => DogRepository());
 
 final dogsNotifierProvider =
     StateNotifierProvider<DogNotifier, AsyncValue<List<DogModel>>>((ref) {
-  DogApi dogApiProvider = ref.read(dogsProvider);
+  DogRepository dogApiProvider = ref.read(dogsProvider);
   return DogNotifier(dogApiProvider);
 });

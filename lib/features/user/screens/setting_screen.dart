@@ -1,14 +1,16 @@
+import 'dart:io';
+
+import 'package:dog_friends/features/user/user_provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../shared_errors/error_message_required.dart';
 import '../../../shared_provider/localization_notifier.dart';
 import '../../../shared_provider/theme_mode_notifier.dart';
-import '../../../shared_widgets/nav_bar_widget.dart';
+import '../../auth/helpers/patterns.dart';
 import '../../auth/models/user.model.dart';
 
 final _firebase = FirebaseAuth.instance;
@@ -21,7 +23,13 @@ class SettingScreen extends ConsumerStatefulWidget {
 }
 
 class _SettingScreenState extends ConsumerState<SettingScreen> {
+  final _formKey = GlobalKey<FormState>();
   final UserAuthData _user = UserAuthData();
+  UserCredential? userCredentials;
+
+  // String userName = "";
+  String imageUrl = "";
+  File? _selectedImage;
 
   void _changeThemeMode() {
     ref.read(themeNotifierProvider.notifier).changeThemeMode();
@@ -33,6 +41,14 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
 
   void _saveUserPhoneNumber(String? value) {
     _user.phoneNumber = value!;
+  }
+
+  void _saveUserEmail(String? value) {
+    _user.email = value!;
+  }
+
+  void _saveUserName(String? value) {
+    _user.userName = value!;
   }
 
   String? _validate(String? value, {Function(String? value)? callBack}) {
@@ -47,9 +63,36 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
     return null;
   }
 
+  String? _checkEmail(String? value) {
+    final isEmailValid = emailPattern.hasMatch(value!);
+    if (!isEmailValid) {
+      return "This email not valid";
+    }
+    return null;
+  }
+
+  void _onSave() async {
+    final isFormValid = _formKey.currentState?.validate();
+
+    if (isFormValid != null && isFormValid && _selectedImage == null) {
+      return;
+    }
+    _formKey.currentState!.save();
+
+    if (userCredentials == null || userCredentials!.user == null) {
+      print("user creds not available");
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeMode mode = ref.watch(themeNotifierProvider);
+    final userCredential = ref.watch(userNotifierProvider);
+    final strings = AppLocalizations.of(context)!;
+
+    print(userCredential?.user?.email);
+    print(userCredential?.user?.displayName);
 
     return Scaffold(
       body: CustomScrollView(
@@ -58,15 +101,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
             expandedHeight: 70,
             floating: false,
             pinned: true,
-            actions: [
-              IconButton(
-                onPressed: () => context.go("/setting"),
-                icon: const Icon(
-                  Icons.settings,
-                  size: 30,
-                ),
-              ),
-            ],
+            actions: [],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 AppLocalizations.of(context)!.dogFriends,
@@ -87,7 +122,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text("Change theme"),
+                              child: Text(strings.settingScreenChangeTheme),
                             ),
                             SizedBox(width: 40),
                             IconButton(
@@ -109,7 +144,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text("Change locale"),
+                              child: Text(strings.settingScreenChangeLocale),
                             ),
                             SizedBox(width: 40),
                             IconButton(
@@ -123,8 +158,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                         ),
                       ),
                       TextFormField(
-                        // onTap: () =>
-                        //     FocusManager.instance.primaryFocus?.unfocus(),
+                        initialValue: userCredential?.user?.phoneNumber,
                         onSaved: _saveUserPhoneNumber,
                         validator: _validate,
                         keyboardType: TextInputType.number,
@@ -139,6 +173,43 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                           filled: true,
                         ),
                       ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: userCredential?.user?.email ?? "no email",
+                        onSaved: _saveUserEmail,
+                        validator: (String? value) => _validate(
+                          value,
+                          callBack: _checkEmail,
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textCapitalization: TextCapitalization.none,
+                        autocorrect: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "example@mail.com",
+                          labelText: "Enter your email",
+                          filled: true,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        autocorrect: false,
+                        textCapitalization: TextCapitalization.none,
+                        keyboardType: TextInputType.name,
+                        onSaved: _saveUserName,
+                        validator: _validate,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Harry Potter",
+                          labelText: "Enter your name",
+                          filled: true,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _onSave,
+                        child: Text(strings.settingScreenSaveButton),
+                      ),
                     ],
                   ),
                 );
@@ -149,7 +220,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
         ],
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       ),
-      bottomNavigationBar: const NavBar(),
+      // bottomNavigationBar: const NavBar(),
     );
   }
 }

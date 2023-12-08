@@ -4,7 +4,6 @@ import 'package:dog_friends/shared_provider/theme_mode_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../shared_widgets/nav_bar_widget.dart';
 import '../../user/service/dogs_api.dart';
 import '../widgets/grid_dogs_widget.dart';
 import '../widgets/list_dogs_widget.dart';
@@ -21,7 +20,7 @@ const mockImageUrl =
     "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg";
 
 class _DogsListScreenState extends ConsumerState<DogsListScreen> {
-  final dogsApi = DogApi();
+  final dogsApi = DogRepository();
   List<DogModel> dogsList = [];
   bool isGridView = false;
   static const int minimalScreenWidth = 932;
@@ -74,40 +73,22 @@ class _DogsListScreenState extends ConsumerState<DogsListScreen> {
         MediaQuery.sizeOf(context).width > minimalScreenWidth;
     final int columnsCount = isLandscape && isEnoughWidth ? 4 : 2;
 
-    return Scaffold(
-      bottomNavigationBar: const NavBar(),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () => goToCreateDogScreen(),
-        ),
-        actions: [
-          IconButton(
-            onPressed: _changeThemeMode,
-            icon: const Icon(
-              Icons.dark_mode,
-              size: 30,
-            ),
+    return Center(
+      child: switch (ref.watch(dogsNotifierProvider)) {
+        AsyncData(:final value) => Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: isLandscape
+                ? DogsGridWidget(
+                    dogsList: value,
+                    columnsCount: columnsCount,
+                  )
+                : DogsListWidget(
+                    dogsList: value,
+                  ),
           ),
-        ],
-      ),
-      body: Center(
-        child: switch (ref.watch(dogsNotifierProvider)) {
-          AsyncData(:final value) => Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: isLandscape
-                  ? DogsGridWidget(
-                      dogsList: value,
-                      columnsCount: columnsCount,
-                    )
-                  : DogsListWidget(
-                      dogsList: value,
-                    ),
-            ),
-          AsyncError() => const Text("Some error occurred"),
-          _ => const CircularProgressIndicator(),
-        },
-      ),
+        AsyncError() => const Text("Some error occurred"),
+        _ => const CircularProgressIndicator(),
+      },
     );
   }
 }

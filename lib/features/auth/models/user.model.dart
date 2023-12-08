@@ -3,7 +3,7 @@ class UserAuthData {
   String? phoneNumber;
   String? email;
   String? password;
-  String? numberOfDog;
+  String? amountOfDogs;
   String? country;
   String? city;
 

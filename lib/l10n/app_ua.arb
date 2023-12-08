@@ -3,5 +3,12 @@
   "dogFriends": "Dog Friends",
   "bottomNavigationBarIconMessage": "Повідомлення",
   "bottomNavigationBarIconListOfDogs": "Список собак",
-  "bottomNavigationBarIconUserProfile": "Профіль користувача"
+  "bottomNavigationBarIconUserProfile": "Профіль користувача",
+  "photoPickerIconAddImage": "додати зображення",
+  "userProfileScreenSaveButton": "Зберегти",
+  "userProfileScreenDogName1": "Токіо",
+  "userProfileScreenDogName2": "Джаві",
+  "settingScreenChangeTheme": "Змінити тему",
+  "settingScreenChangeLocale": "Змінити мову",
+  "settingScreenSaveButton": "Зберегти"
 }
